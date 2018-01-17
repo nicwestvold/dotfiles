@@ -46,7 +46,8 @@ syntax on
 " run prettier on save
 let g:prettier#autoformat = 0
 let g:prettier#config#print_width = 100
-let g:prettier#config#bracket_spacing = 'true'autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
+let g:prettier#config#bracket_spacing = 'true'
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
 
 " status line settings
 " use powerline fonts
