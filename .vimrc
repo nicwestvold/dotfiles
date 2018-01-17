@@ -9,12 +9,14 @@ filetype plugin on
 "" plugins installed (using vim8)
 " ack.vim
 " ale
+" emmet-vim
 " fzf.vim
 " nerdtree
 " nerdtree-git-plugin
 " tlib_vim
 " vim-addon-mw-utils
 " vim-airline
+" vim-commentary
 " vim-devicons
 " vim-elixir
 " vim-gitgutter
@@ -22,7 +24,9 @@ filetype plugin on
 " vim-javascript
 " vim-jsx
 " vim-multiple-cursors
+" vim-prettier
 " vim-snipmate
+" vim-surround
 " vim-wakatime
 
 set number
@@ -41,7 +45,8 @@ syntax on
 
 " run prettier on save
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
+let g:prettier#config#print_width = 100
+let g:prettier#config#bracket_spacing = 'true'autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
 
 " status line settings
 " use powerline fonts
@@ -58,6 +63,6 @@ let g:airline_powerline_fonts = 1
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " shortcut to toggle
-map <C-n> :NERDTreeToggle<CR>
+map <C-m> :NERDTreeToggle<CR>
 " quit NERDTree when opening file
 let NERDTreeQuitOnOpen = 1
