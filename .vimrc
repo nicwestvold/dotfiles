@@ -47,6 +47,7 @@ syntax on
 let g:prettier#autoformat = 0
 let g:prettier#config#print_width = 100
 let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#config#parser = 'babylon'
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
 
 " status line settings
