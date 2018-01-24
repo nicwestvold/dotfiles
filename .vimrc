@@ -68,3 +68,5 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-m> :NERDTreeToggle<CR>
 " quit NERDTree when opening file
 let NERDTreeQuitOnOpen = 1
+
+command Bd bp\|bd \#
