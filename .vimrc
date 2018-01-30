@@ -70,3 +70,6 @@ map <C-m> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
 
 command Bd bp\|bd \#
+
+" only prefer to count using decimal and base 10 numbers
+set nrformats=
