@@ -9,6 +9,7 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 " Add other plugins here.
 call minpac#add('mileszs/ack.vim')
 call minpac#add('w0rp/ale')
+call minpac#add('Shougo/deoplete.nvim')
 call minpac#add('mattn/emmet-vim')
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('vim-airline/vim-airline-themes')
@@ -17,6 +18,7 @@ call minpac#add('scrooloose/nerdtree')
 call minpac#add('Xuyuanp/nerdtree-git-plugin')
 call minpac#add('tpope/vim-commentary')
 call minpac#add('ryanoasis/vim-devicons')
+call minpac#add('tpope/vim-fugitive')
 call minpac#add('elixir-editors/vim-elixir')
 call minpac#add('airblade/vim-gitgutter')
 call minpac#add('fatih/vim-go')
@@ -24,12 +26,14 @@ call minpac#add('pangloss/vim-javascript')
 call minpac#add('mxw/vim-jsx')
 call minpac#add('terryma/vim-multiple-cursors')
 call minpac#add('prettier/vim-prettier')
+call minpac#add('sheerun/vim-polyglot')
 call minpac#add('tpope/vim-surround')
-call minpac#add('wakatime/vim-wakatime')
+" call minpac#add('wakatime/vim-wakatime')
 
 " themes
-" call minpac#add('rakr/vim-one')
-call minpac#add('mhartington/oceanic-next')
+call minpac#add('rakr/vim-one')
+" call minpac#add('mhartington/oceanic-next')
+call minpac#add('jordwalke/flatlandia')
 
 " not yet using
 " call minpac#add('tomtom/tlib_vim')
@@ -102,18 +106,24 @@ set nrformats=
 " set winheight=30
 " set winminheight=5
 
-" this prevent neovim from changing the cursor on insert mode
-set guicursor=
-
-" let g:airline_theme = 'onedark'
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
 " for vim8
 " if (has("termguicolors"))
 "   set termguicolors
 " endif
 
-" if (has("nvim"))
-"   colorscheme OceanicNext
-"   " set background=dark
-" endif
+if (has("nvim"))
+  " this prevent neovim from changing the cursor on insert mode
+  set guicursor=
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
+
+  colorscheme OceanicNext
+  let g:airline_theme='oceanicnext'
+  " https://github.com/mhartington/oceanic-next/issues/40
+  set t_ut=
+  " colorscheme one
+  " set background=dark
+  
+  " Use deoplete.
+  let g:deoplete#enable_at_startup = 1
+endif
