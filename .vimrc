@@ -10,7 +10,9 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 call minpac#add('mileszs/ack.vim')
 call minpac#add('w0rp/ale')
 call minpac#add('Shougo/deoplete.nvim')
-call minpac#add('mattn/emmet-vim')
+if (has("nvim"))
+  call minpac#add('mattn/emmet-vim')
+endif
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('vim-airline/vim-airline-themes')
 call minpac#add('junegunn/fzf.vim')
@@ -32,8 +34,9 @@ call minpac#add('tpope/vim-surround')
 
 " themes
 call minpac#add('rakr/vim-one')
-" call minpac#add('mhartington/oceanic-next')
+call minpac#add('mhartington/oceanic-next')
 call minpac#add('jordwalke/flatlandia')
+call minpac#add('challenger-deep-theme/vim')
 
 " not yet using
 " call minpac#add('tomtom/tlib_vim')
@@ -96,6 +99,10 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-m> :NERDTreeToggle<CR>
 " quit NERDTree when opening file
 let NERDTreeQuitOnOpen = 1
+" enable line numbers
+let NERDTreeShowLineNumbers = 1
+" use relative line numbers
+autocmd FileType nerdtree setlocal relativenumber
 
 command Bd bp\|bd \#
 
@@ -106,17 +113,20 @@ set nrformats=
 " set winheight=30
 " set winminheight=5
 
-" for vim8
-" if (has("termguicolors"))
-"   set termguicolors
-" endif
-
 if (has("nvim"))
+  " this helps neovim match the colors
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+
   " this prevent neovim from changing the cursor on insert mode
   set guicursor=
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 
+  " colorscheme challenger_deep
+  " colorscheme flatlandia
+  " let g:airline_theme='flatlandia'
   colorscheme OceanicNext
   let g:airline_theme='oceanicnext'
   " https://github.com/mhartington/oceanic-next/issues/40
