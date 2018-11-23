@@ -22,6 +22,7 @@ call minpac#add('tpope/vim-commentary')
 call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('elixir-editors/vim-elixir')
+call minpac#add('mhinz/vim-mix-format')
 call minpac#add('airblade/vim-gitgutter')
 call minpac#add('fatih/vim-go')
 call minpac#add('pangloss/vim-javascript')
@@ -31,6 +32,8 @@ call minpac#add('prettier/vim-prettier')
 call minpac#add('sheerun/vim-polyglot')
 call minpac#add('tpope/vim-surround')
 " call minpac#add('wakatime/vim-wakatime')
+call minpac#add('matze/vim-move')
+call minpac#add('ElmCast/elm-vim')
 
 " themes
 call minpac#add('rakr/vim-one')
@@ -65,17 +68,31 @@ set smartcase
 
 set rtp+=/usr/local/opt/fzf
 
+" automatically change directories
+" set autochdir
+
 " run prettier on save
-let g:prettier#autoformat = 0
-let g:prettier#config#print_width = 100
-let g:prettier#config#bracket_spacing = 'true'
-let g:prettier#config#parser = 'babylon'
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
+" let g:prettier#autoformat = 0
+" let g:prettier#config#print_width = 100
+" let g:prettier#config#bracket_spacing = 'true'
+" let g:prettier#config#parser = 'babylon'
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
 
 " let g:javascript_plugin_flow = 1
 let g:ale_linters = {
-\   'javascript': ['eslint', 'flow', 'prettier'],
+\   'javascript': ['eslint', 'flow'],
 \}
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
+
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
+
+" let g:polyglot_disabled = ['elm']
+" let g:elm_format_autosave = 1
 
 " for devicons
 set encoding=utf8
@@ -86,9 +103,17 @@ let g:airline_powerline_fonts = 1
 set laststatus=2
 " let g:airline_theme='one'
 
+" golang -> https://github.com/fatih/vim-go-tutorial#check-it
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_deadline = "5s"
 
 " JSX plugin settings. allow both .js and .jsx
 let g:jsx_ext_required = 0
+
+" format {ex,exs} on save
+let g:mix_format_on_save = 1
 
 " NERDTree
 " open NERDTree
@@ -124,6 +149,7 @@ if (has("nvim"))
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 
+  " setting the theme
   " colorscheme challenger_deep
   " colorscheme flatlandia
   " let g:airline_theme='flatlandia'
@@ -133,7 +159,10 @@ if (has("nvim"))
   set t_ut=
   " colorscheme one
   " set background=dark
-  
+
   " Use deoplete.
   let g:deoplete#enable_at_startup = 1
 endif
+
+" load custom settings
+source ~/.dotfiles/.vim/custom.vim
