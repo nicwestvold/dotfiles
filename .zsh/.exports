@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# add the Postgres.app to the PATH
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+
+# golang
+export GOPATH=$HOME/go
+export GOROOT="$(asdf where golang $(asdf current golang | awk '{print $1}'))/go"
+export PATH=$PATH:$GOPATH/bin
+export PATH=$GOROOT/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
+export SCHEMA_PATH=$HOME/go/src
+
+# FZF setttings
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# cargo (rust)
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# WTF env vars
+export WTF_OWM_API_KEY=
+export WTF_GITHUB_TOKEN=
+export WTF_JIRA_API_KEY=
+
+export GPG_TTY=$(tty)

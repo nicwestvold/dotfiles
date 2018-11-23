@@ -69,7 +69,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -86,18 +86,11 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-markdown() {
-    open /Applications/Markdown\ Pro.app "$1"
-}
-
 # load completions for tmuxinator (and the 'mux' alias)
 source ~/.bin/tmuxinator.zsh
 
 export PATH="$HOME/bin:$HOME/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 eval "$(rbenv init -)"
-
-# add the Postgres.app to the PATH
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -106,10 +99,27 @@ export NVM_DIR="$HOME/.nvm"
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+. $HOME/.asdf/installs/ocaml/$(asdf current ocaml | awk '{print $1}')/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-autoload -U promptinit; promptinit
-prompt pure
+# z
+. /usr/local/etc/profile.d/z.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# extensions
+# for file in $(dirname "$(readlink "$0")")/.zsh/.{exports,aliases,functions}; do
+for file in ~/.dotfiles/.zsh/.{exports,aliases,functions}; do
+  source "$file";
+done;
+
+# custom extensions
+custom=~/.dotfiles/.zsh/.custom;
+if [[ -f "$custom" ]]; then
+  source "$custom"
+fi
+
+autoload -U promptinit; promptinit
+prompt pure
