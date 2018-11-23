@@ -11,6 +11,18 @@
 # then uncomment the following line to make Meta + arrow keys mapping work
 #set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
 
+set-option -ga terminal-overrides ',*:enacs@:smacs@:rmacs@:acsc@'
+
+# Added this in an attempt to fix neovim color
+# Add truecolor support
+
+# # commenting these out to get wtf working
+# set-option -ga terminal-overrides ",xterm-256color:Tc"
+# # Default terminal is 256 colors
+# set -g default-terminal "screen-256color"
+
+# set -g default-terminal "xterm-256color"
+
 
 # -- windows & pane creation ---------------------------------------------------
 
@@ -70,7 +82,7 @@ tmux_conf_theme_pane_active_indicator='#00afff'         # light blue
 
 # status line style
 tmux_conf_theme_message_fg='#000000'                    # black
-tmux_conf_theme_message_bg='#ffff00'                    # yellow
+tmux_conf_theme_message_bg='#f3f99d'                    # yellow (previous: #ffff00)
 tmux_conf_theme_message_attr='bold'
 
 # status line command style (<prefix> : Escape)
@@ -80,19 +92,19 @@ tmux_conf_theme_message_command_attr='bold'
 
 # window modes style
 tmux_conf_theme_mode_fg='#000000'                       # black
-tmux_conf_theme_mode_bg='#ffff00'                       # yellow
+tmux_conf_theme_mode_bg='#f3f99d'                       # yellow (previous: #ffff00)
 tmux_conf_theme_mode_attr='bold'
 
 # status line style
 tmux_conf_theme_status_fg='#8a8a8a'                     # light gray
-tmux_conf_theme_status_bg='#282a36'                     # dark gray - previously #080808
+tmux_conf_theme_status_bg='#17252c'                     # dark gray (snazzy) - '#282a36' # previously #080808
 tmux_conf_theme_status_attr='none'
 
 # window status style
 #   - built-in variables are:
 #     - #{circled_window_index}
 tmux_conf_theme_window_status_fg='#8a8a8a'              # light gray
-tmux_conf_theme_window_status_bg='#282a36'              # dark gray - previously #080808
+tmux_conf_theme_window_status_bg='#17252c'              # dark gray (snazzy) -> '#282a36' # previously #080808
 tmux_conf_theme_window_status_attr='none'
 tmux_conf_theme_window_status_format='#I #W'
 #tmux_conf_theme_window_status_format='#{circled_window_index} #W'
@@ -114,7 +126,7 @@ tmux_conf_theme_window_status_activity_bg='default'
 tmux_conf_theme_window_status_activity_attr='underscore'
 
 # window bell status style
-tmux_conf_theme_window_status_bell_fg='#ffff00'         # yellow
+tmux_conf_theme_window_status_bell_fg='#f3f99d'         # yellow (previous: #ffff00)
 tmux_conf_theme_window_status_bell_bg='default'
 tmux_conf_theme_window_status_bell_attr='blink,bold'
 
@@ -160,12 +172,13 @@ tmux_conf_theme_status_right='#{prefix}#{pairing} #{?battery_status, #{battery_s
 
 # status left style
 tmux_conf_theme_status_left_fg='#000000,#e4e4e4,#e4e4e4'  # black, white , white
-tmux_conf_theme_status_left_bg='#ffff00,#ff00af,#00afff'  # yellow, pink, white blue
+tmux_conf_theme_status_left_bg='#f3f99d,#ff00af,#00afff'  # yellow (previous: #ffff00), pink (previous: #ff00af), white blue
 tmux_conf_theme_status_left_attr='bold,none,none'
 
 # status right style
 tmux_conf_theme_status_right_fg='#8a8a8a,#e4e4e4,#000000' # light gray, white, black
-tmux_conf_theme_status_right_bg='#282a36,#d70000,#e4e4e4' # dark gray (previously #080808), red, white
+# tmux_conf_theme_status_right_bg='#282a36,#d70000,#e4e4e4' # dark gray (previously #080808), red, white
+tmux_conf_theme_status_right_bg='#17252c,#d70000,#e4e4e4' # dark gray (previously #080808), red (previous: #d70000), white
 tmux_conf_theme_status_right_attr='none,none,bold'
 
 # pairing indicator
@@ -229,6 +242,8 @@ tmux_conf_battery_status_discharging='↓'    # U+2193
 tmux_conf_theme_clock_colour='#00afff'  # light blue
 tmux_conf_theme_clock_style='24'
 
+# reduce the time that it takes for <Escape> to "work"
+set-option -s escape-time 10
 
 # -- clipboard -----------------------------------------------------------------
 
@@ -284,7 +299,7 @@ bind | split-window -h
 # bind -r L resize-pane -R 5
 
 # copy/paste
-setw -g mode-keys vi
+# setw -g mode-keys vi
 unbind [
 bind Escape copy-mode
 unbind p
