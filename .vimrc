@@ -40,6 +40,7 @@ call minpac#add('rakr/vim-one')
 call minpac#add('mhartington/oceanic-next')
 call minpac#add('jordwalke/flatlandia')
 call minpac#add('challenger-deep-theme/vim')
+call minpac#add('machakann/vim-highlightedyank')
 
 " not yet using
 " call minpac#add('tomtom/tlib_vim')
@@ -129,8 +130,6 @@ let NERDTreeShowLineNumbers = 1
 " use relative line numbers
 autocmd FileType nerdtree setlocal relativenumber
 
-command Bd bp\|bd \#
-
 " only prefer to count using decimal and base 10 numbers
 set nrformats=
 
@@ -161,6 +160,9 @@ if (has("nvim"))
 
   " Use deoplete.
   let g:deoplete#enable_at_startup = 1
+
+  " show the replacements
+  set inccommand=nosplit
 endif
 
 " load custom settings
