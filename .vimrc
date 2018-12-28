@@ -147,7 +147,6 @@ if (has("nvim"))
   " this prevent neovim from changing the cursor on insert mode
   set guicursor=
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 
   " setting the theme
   " colorscheme challenger_deep
