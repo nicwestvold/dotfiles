@@ -89,7 +89,7 @@ export EDITOR='nvim'
 # load completions for tmuxinator (and the 'mux' alias)
 source ~/.bin/tmuxinator.zsh
 
-export PATH="$HOME/bin:$HOME/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$HOME/bin:$HOME/.rbenv/shims:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 eval "$(rbenv init -)"
 
 export NVM_DIR="$HOME/.nvm"
@@ -123,3 +123,6 @@ fi
 
 autoload -U promptinit; promptinit
 prompt pure
+
+source /Users/nicwestvold/go/src/github.com/powerchordinc/platform/scripts/powerchord.bash
+source /Users/nicwestvold/go/src/github.com/powerchordinc/platform/scripts/powerchord.bash

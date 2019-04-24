@@ -33,9 +33,11 @@ call minpac#add('terryma/vim-multiple-cursors')
 call minpac#add('prettier/vim-prettier')
 call minpac#add('sheerun/vim-polyglot')
 call minpac#add('tpope/vim-surround')
-" call minpac#add('wakatime/vim-wakatime')
+call minpac#add('wakatime/vim-wakatime')
 call minpac#add('matze/vim-move')
 call minpac#add('ElmCast/elm-vim')
+call minpac#add('rust-lang/rust.vim')
+" call minpac#add('racer-rust/vim-racer')
 
 " themes
 call minpac#add('rakr/vim-one')
@@ -118,6 +120,9 @@ let g:jsx_ext_required = 0
 
 " format {ex,exs} on save
 let g:mix_format_on_save = 1
+
+" format rust on save
+let g:rustfmt_autosave = 1
 
 " NERDTree
 " open NERDTree
