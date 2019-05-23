@@ -113,12 +113,12 @@ source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # extensions
 # for file in $(dirname "$(readlink "$0")")/.zsh/.{exports,aliases,functions}; do
-for file in ~/.dotfiles/.zsh/.{exports,aliases,functions}; do
+for file in ~/.dotfiles/zsh/{exports,aliases,functions}; do
   source "$file";
 done;
 
 # custom extensions
-custom=~/.dotfiles/.zsh/.custom;
+custom=~/.dotfiles/zsh/custom;
 if [[ -f "$custom" ]]; then
   source "$custom"
 fi
