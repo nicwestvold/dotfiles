@@ -24,3 +24,6 @@ export WTF_GITHUB_TOKEN=
 export WTF_JIRA_API_KEY=
 
 export GPG_TTY=$(tty)
+
+# add user's bin to PATH
+export PATH=$HOME/bin:$PATH

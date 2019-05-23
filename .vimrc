@@ -63,7 +63,7 @@ set number
 set expandtab
 set smarttab
 set shiftwidth=2
-" set softtabstop=2
+set softtabstop=0
 set tabstop=2
 
 set ai
@@ -98,8 +98,8 @@ let g:ale_fixers = {
 " Set this variable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 1
 
-" let g:polyglot_disabled = ['elm']
-" let g:elm_format_autosave = 1
+let g:polyglot_disabled = ['elm']
+let g:elm_format_autosave = 1
 
 " for devicons
 set encoding=utf8
@@ -175,4 +175,5 @@ if (has("nvim"))
 endif
 
 " load custom settings
-source ~/.dotfiles/.vim/custom.vim
+" source ~/.dotfiles/.vim/custom.vim
+" source ~/dotfiles/vim/vimrc.vim
