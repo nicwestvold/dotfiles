@@ -27,3 +27,6 @@ export GPG_TTY=$(tty)
 
 # add user's bin to PATH
 export PATH=$HOME/bin:$PATH
+
+# flutter
+export PATH=$PATH:$HOME/flutter/bin
