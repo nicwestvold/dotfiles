@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # all aliases go here...
-alias copy='xargs echo -n | xclip -selection clipboard'
+alias copy="xclip -r -selection clipboard"
