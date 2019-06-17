@@ -8,6 +8,7 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 " Add other plugins here.
 call minpac#add('mileszs/ack.vim')
+call minpac#add('jremmen/vim-ripgrep')
 call minpac#add('w0rp/ale')
 call minpac#add('Shougo/deoplete.nvim')
 if (has("nvim"))
