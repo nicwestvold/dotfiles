@@ -43,3 +43,7 @@ function letsgo {
 function ingopath {
   [[ $PWD == "$(go env GOPATH)"* ]] && echo "(👀)"
 }
+
+function fix_facetime {
+  echo "facetimehd" | sudo tee -a /etc/modules
+}

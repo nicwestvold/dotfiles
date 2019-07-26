@@ -112,9 +112,13 @@ set laststatus=2
 " let g:airline_theme='one'
 
 " golang -> https://github.com/fatih/vim-go-tutorial#check-it
-let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+" let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+" let g:go_metalinter_autosave = 1
+" let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+" let g:go_metalinter_deadline = "5s"
+let g:go_metalinter_enabled = ['vet', 'errcheck']
 let g:go_metalinter_autosave = 1
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_autosave_enabled = ['vet']
 let g:go_metalinter_deadline = "5s"
 
 " JSX plugin settings. allow both .js and .jsx

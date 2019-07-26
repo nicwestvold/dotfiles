@@ -1,0 +1,4 @@
+# run this to get laptop camera to work after restart
+#   (this is after the facetime script has been run)
+#   for 2015 MBP running popOS 19.04
+echo "facetimehd" | sudo tee -a /etc/modules
