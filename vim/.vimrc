@@ -40,6 +40,8 @@ call minpac#add('matze/vim-move')
 call minpac#add('ElmCast/elm-vim')
 call minpac#add('rust-lang/rust.vim')
 " call minpac#add('racer-rust/vim-racer')
+call minpac#add('mustache/vim-mustache-handlebars')
+call minpac#add('janko/vim-test')
 
 " themes
 call minpac#add('rakr/vim-one')
@@ -182,3 +184,10 @@ endif
 " load custom settings
 " source ~/.dotfiles/.vim/custom.vim
 " source ~/dotfiles/vim/vimrc.vim
+
+" #### VIM TEST MAPPINGS ####
+nmap <silent> <leader>tn :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ts :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tg :TestVisit<CR>

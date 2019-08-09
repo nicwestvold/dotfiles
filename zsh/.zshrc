@@ -133,3 +133,6 @@ if [ -f '/home/nwestvold/google-cloud-sdk/path.zsh.inc' ]; then . '/home/nwestvo
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/nwestvold/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/nwestvold/google-cloud-sdk/completion.zsh.inc'; fi
+
+# direnv
+eval "$(direnv hook zsh)"
