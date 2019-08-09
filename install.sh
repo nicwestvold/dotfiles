@@ -84,57 +84,64 @@ waitFor "Add key to GitHub and press <enter> to continue installation\r\c"
 
 install snap sudo apt-get install -y snapd
 
-install dotfiles git clone --quiet git@github.com:nicwestvold/dotfiles.git ~/.dotfiles
+mkdir $HOME/Development
 
-install nvim sh ~/.dotfiles/scripts/nvim.sh
+dotpath=~/Development/nic/dotfiles
 
-install tmux sh ~/.dotfiles/scripts/tmux.sh
+install dotfiles git clone --quiet git@github.com:nicwestvold/dotfiles.git $dotpath
 
-install alacritty sh ~/.dotfiles/scripts/alacritty.sh
+install nvim sh $dotpath/scripts/nvim.sh
 
-install "nerd fonts" sh ~/.dotfiles/scripts/nerd-fonts.sh
+install tmux sh $dotpat/scripts/tmux.sh
 
-install zsh sh ~/.dotfiles/scripts/zsh.sh
+install alacritty sh $dotpat/scripts/alacritty.sh
 
-install docker sh ~/.dotfiles/scripts/docker.sh
+install "nerd fonts" sh $dotpat/scripts/nerd-fonts.sh
 
-install "docker compose" sh ~/.dotfiles/scripts/docker-compose.sh
+install zsh sh $dotpat/scripts/zsh.sh
 
-install rust sh ~/.dotfiles/scripts/rust.sh
+install docker sh $dotpat/scripts/docker.sh
 
-install asdf sh ~/.dotfiles/scripts/asdf.sh
-install go sh ~/.dotfiles/scripts/go.sh
-install nodejs sh ~/.dotfiles/scripts/nodejs.sh
-install erlang sh ~/.dotfiles/scripts/erlang.sh
-install elixir sh ~/.dotfiles/scripts/elixir.sh
+install "docker compose" sh $dotpat/scripts/docker-compose.sh
 
-install elm sh ~/.dotfiles/scripts/elm.sh
+install rust sh $dotpat/scripts/rust.sh
 
-install "Linux Containers" sh ~/.dotfiles/scripts/linuxcontainers.sh
+install asdf sh $dotpat/scripts/asdf.sh
+install go sh $dotpat/scripts/go.sh
+install nodejs sh $dotpat/scripts/nodejs.sh
+install erlang sh $dotpat/scripts/erlang.sh
+install elixir sh $dotpat/scripts/elixir.sh
 
-install chrome sh ~/.dotfiles/scripts/chrome.sh
+install elm sh $dotpat/scripts/elm.sh
 
-install tweaks sh ~/.dotfiles/scripts/tweaks.sh
+install "Linux Containers" sh $dotpat/scripts/linuxcontainers.sh
 
-install chrome sh ~/.dotfiles/scripts/chrome.sh
+install chrome sh $dotpat/scripts/chrome.sh
 
-install slack sh ~/.dotfiles/scripts/slack.sh
+install tweaks sh $dotpat/scripts/tweaks.sh
 
-install zoom sh ~/.dotfiles/scripts/zoom.sh
+install chrome sh $dotpat/scripts/chrome.sh
 
-install ack sh ~/.dotfiles/scripts/ack.sh
-install balena-etcher sh ~/.dotfiles/scripts/balena-etcher.sh
-install boostnote sh ~/.dotfiles/scripts/boostnote.sh
-install facetime_camera sh ~/.dotfiles/scripts/facetime_camera.sh
-install flutter sh ~/.dotfiles/scripts/flutter.sh
-install "Gnome Pomdoro" sh ~/.dotfiles/scripts/gnome-pomdoro.sh
-install insomnia sh ~/.dotfiles/scripts/insomnia.sh
-install htop sh ~/.dotfiles/scripts/htop.sh
-install haskell sh ~/.dotfiles/scripts/haskell.sh
-install signal sh ~/.dotfiles/scripts/signal.sh
-install sublime-text sh ~/.dotfiles/scripts/sublime-text.sh
-install vscode sh ~/.dotfiles/scripts/vscode.sh
-install vlc sh ~/.dotfiles/scripts/vlc.sh
+install slack sh $dotpat/scripts/slack.sh
+
+install zoom sh $dotpat/scripts/zoom.sh
+
+install ack sh $dotpat/scripts/ack.sh
+install htop sh $dotpat/scripts/htop.sh
+
+install "Gnome Pomdoro" sh $dotpat/scripts/gnome-pomdoro.sh
+install insomnia sh $dotpat/scripts/insomnia.sh
+install vscode sh $dotpat/scripts/vscode.sh
+install sublime-text sh $dotpat/scripts/sublime-text.sh
+install haskell sh $dotpat/scripts/haskell.sh
+install flutter sh $dotpat/scripts/flutter.sh
+
+install signal sh $dotpat/scripts/signal.sh
+install boostnote sh $dotpat/scripts/boostnote.sh
+
+install facetime_camera sh $dotpat/scripts/facetime_camera.sh
+install balena-etcher sh $dotpat/scripts/balena-etcher.sh
+install vlc sh $dotpat/scripts/vlc.sh
 
 chsh -s $(which zsh)
 
