@@ -107,7 +107,7 @@ export EDITOR='nvim'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -126,8 +126,6 @@ fi
 # autoload -U promptinit; promptinit
 # prompt pure
 
-source /home/nwestvold/go/src/github.com/powerchordinc/platform/scripts/powerchord.bash
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/nwestvold/google-cloud-sdk/path.zsh.inc' ]; then . '/home/nwestvold/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -135,4 +133,4 @@ if [ -f '/home/nwestvold/google-cloud-sdk/path.zsh.inc' ]; then . '/home/nwestvo
 if [ -f '/home/nwestvold/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/nwestvold/google-cloud-sdk/completion.zsh.inc'; fi
 
 # direnv
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
