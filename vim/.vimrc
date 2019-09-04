@@ -175,7 +175,7 @@ if (has("nvim"))
   " set background=dark
 
   " Use deoplete.
-  let g:deoplete#enable_at_startup = 1
+  " let g:deoplete#enable_at_startup = 1
 
   " show the replacements
   set inccommand=nosplit

@@ -25,6 +25,19 @@ if [ -x "$(command -v erl)" ]; then
   fi
 fi
 
+# install dependencies
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install -y \
+  build-essential \
+  autoconf \
+  m4 \
+  libncurses5-dev \
+  libwxgtk3.0-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev \
+  libssh-dev \
+  unixodbc-dev \
+  xsltproc fop
+
 echo "installing version $latest of erlang"
 # skip the java dependency
 export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
