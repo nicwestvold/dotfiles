@@ -25,8 +25,11 @@ if [ -x "$(command -v elixir)" ]; then
   fi
 fi
 
+# TODO: this needs to be updated to parse the latest version coming back from the `list-all` command
+
 # get the OTP version number
 otp="otp-$(erl -eval '{ok, Version} = file:read_file(filename:join([code:root_dir(), "releases", erlang:system_info(otp_release), "OTP_VERSION"])), io:fwrite(Version), halt().' -noshell | awk -F. '{print $1}')"
 
-echo "installing version $latest-$otp of elixir"
-asdf install elixir $latest-$otp
+echo "installing version $latest of elixir"
+asdf install elixir $latest
+asdf global elixir $latest

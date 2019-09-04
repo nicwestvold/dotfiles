@@ -42,4 +42,4 @@ echo "installing version $latest of erlang"
 # skip the java dependency
 export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
 asdf install erlang $latest
-asdf global elrang $latest
+asdf global erlang $latest
