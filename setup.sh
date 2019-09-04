@@ -28,12 +28,15 @@ ln -sf $dotfiles/vim/custom.vim $HOME/.vim/custom.vim
 mkdir -p ~/.config/nvim
 ln -sf $dotfiles/nvim/init.vim $HOME/.config/nvim/init.vim
 
+# SETUP alacritty
+ln -sf /home/nwestvold/Development/nic/dotfiles/alacritty.yml /home/nwestvold/.config/alacritty/alacritty.yml
+
 # WORKFILES
 # clone the workfiles repository
-# git clone git@github.com:nicwestvold/workfiles.git $workfiles
+git clone git@github.com:nicwestvold/workfiles.git $workfiles
 
-# sh $workfiles/setup.sh
+sh $workfiles/setup.sh
 
 # SETUP tooling
-# sh $dotfiles/scripts/gcloud.sh
-# sh $dotfiles/scripts/kubectl.sh
+sh $dotfiles/scripts/gcloud.sh
+sh $dotfiles/scripts/kubectl.sh
