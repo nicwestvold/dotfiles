@@ -42,6 +42,7 @@ call minpac#add('rust-lang/rust.vim')
 " call minpac#add('racer-rust/vim-racer')
 call minpac#add('mustache/vim-mustache-handlebars')
 call minpac#add('janko/vim-test')
+call minpac#add('leafgarland/typescript-vim')
 
 " themes
 call minpac#add('rakr/vim-one')
