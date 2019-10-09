@@ -10,7 +10,8 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 call minpac#add('mileszs/ack.vim')
 call minpac#add('jremmen/vim-ripgrep')
 call minpac#add('w0rp/ale')
-call minpac#add('Shougo/deoplete.nvim')
+" call minpac#add('Shougo/deoplete.nvim')
+call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
 if (has("nvim"))
   call minpac#add('mattn/emmet-vim')
 endif
@@ -176,7 +177,7 @@ if (has("nvim"))
   " set background=dark
 
   " Use deoplete.
-  let g:deoplete#enable_at_startup = 1
+  " let g:deoplete#enable_at_startup = 1
 
   " show the replacements
   set inccommand=nosplit
