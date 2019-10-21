@@ -96,8 +96,14 @@ export EDITOR='nvim'
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
+# . $HOME/.asdf/asdf.sh
+# . $HOME/.asdf/completions/asdf.bash
+
+# echo -e "\n. $(brew --prefix asdf)/asdf.sh" >> ~/.bash_profile
+# echo -e "\n. $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash" >> ~/.bash_profile
+. $(brew --prefix asdf)/asdf.sh
+. $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+
 
 # . $HOME/.asdf/installs/ocaml/$(asdf current ocaml | awk '{print $1}')/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
@@ -107,9 +113,9 @@ export EDITOR='nvim'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix zsh-autosuggestions)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # extensions
 # for file in $(dirname "$(readlink "$0")")/.zsh/.{exports,aliases,functions}; do
