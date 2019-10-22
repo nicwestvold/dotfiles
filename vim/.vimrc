@@ -1,61 +1,70 @@
-set packpath^=~/.vim
-packadd minpac
+call plug#begin('~/.vim/plugged')
 
-call minpac#init()
+" set packpath^=~/.vim
+" packadd minpac
+
+" call minpac#init()
 
 " minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
-call minpac#add('k-takata/minpac', {'type': 'opt'})
+" call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 " Add other plugins here.
-call minpac#add('mileszs/ack.vim')
-call minpac#add('jremmen/vim-ripgrep')
-call minpac#add('w0rp/ale')
+Plug 'mileszs/ack.vim'
+Plug 'jremmen/vim-ripgrep'
+Plug 'w0rp/ale'
 " call minpac#add('Shougo/deoplete.nvim')
-call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 if (has("nvim"))
-  call minpac#add('mattn/emmet-vim')
+  Plug 'mattn/emmet-vim'
 endif
-call minpac#add('vim-airline/vim-airline')
-call minpac#add('vim-airline/vim-airline-themes')
-call minpac#add('junegunn/fzf.vim')
-call minpac#add('scrooloose/nerdtree')
-call minpac#add('Xuyuanp/nerdtree-git-plugin')
-call minpac#add('tpope/vim-commentary')
-call minpac#add('ryanoasis/vim-devicons')
-call minpac#add('tpope/vim-fugitive')
-call minpac#add('elixir-editors/vim-elixir')
-call minpac#add('mhinz/vim-mix-format')
-call minpac#add('airblade/vim-gitgutter')
-call minpac#add('fatih/vim-go')
-call minpac#add('rust-lang/rust.vim')
-call minpac#add('pangloss/vim-javascript')
-call minpac#add('mxw/vim-jsx')
-call minpac#add('rhysd/vim-crystal')
-call minpac#add('dleonard0/pony-vim-syntax')
-call minpac#add('terryma/vim-multiple-cursors')
-call minpac#add('prettier/vim-prettier')
-call minpac#add('sheerun/vim-polyglot')
-call minpac#add('tpope/vim-surround')
-call minpac#add('wakatime/vim-wakatime')
-call minpac#add('matze/vim-move')
-call minpac#add('ElmCast/elm-vim')
-call minpac#add('rust-lang/rust.vim')
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-commentary'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tpope/vim-fugitive'
+Plug 'elixir-editors/vim-elixir'
+Plug 'mhinz/vim-mix-format'
+Plug 'airblade/vim-gitgutter'
+Plug 'fatih/vim-go'
+Plug 'rust-lang/rust.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'rhysd/vim-crystal'
+Plug 'dleonard0/pony-vim-syntax'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'prettier/vim-prettier'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-surround'
+Plug 'wakatime/vim-wakatime'
+Plug 'matze/vim-move'
+Plug 'ElmCast/elm-vim'
+Plug 'rust-lang/rust.vim'
 " call minpac#add('racer-rust/vim-racer')
-call minpac#add('mustache/vim-mustache-handlebars')
-call minpac#add('janko/vim-test')
-call minpac#add('leafgarland/typescript-vim')
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'janko/vim-test'
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi', { 'do': 'npm -g install typescript' }
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'vim-syntastic/syntastic'
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
 " themes
-call minpac#add('rakr/vim-one')
-call minpac#add('mhartington/oceanic-next')
-call minpac#add('jordwalke/flatlandia')
-call minpac#add('challenger-deep-theme/vim')
-call minpac#add('machakann/vim-highlightedyank')
+Plug 'rakr/vim-one'
+Plug 'mhartington/oceanic-next'
+Plug 'jordwalke/flatlandia'
+Plug 'challenger-deep-theme/vim'
+Plug 'machakann/vim-highlightedyank'
 
 " not yet using
 " call minpac#add('tomtom/tlib_vim')
 " call minpac#add('MarcWeber/vim-addon-mw-utils')
 " call minpac#add('garbas/vim-snipmate')
+
+call plug#end()
 
 set nocompatible
 set incsearch
@@ -70,6 +79,8 @@ set smarttab
 set shiftwidth=2
 set softtabstop=0
 set tabstop=2
+
+let mapleader=","
 
 set ai
 set si
@@ -195,10 +206,12 @@ if (has("nvim"))
   " Use <c-space> to trigger completion.
   inoremap <silent><expr> <c-space> coc#refresh()
 
-
   " show the replacements
   set inccommand=nosplit
 endif
+
+" Allows Emmet Expansion with the Tab key
+let g:user_emmet_leader_key=','
 
 " load custom settings
 " source ~/.dotfiles/.vim/custom.vim
@@ -210,3 +223,18 @@ nmap <silent> <leader>tf :TestFile<CR>
 nmap <silent> <leader>ts :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tg :TestVisit<CR>
+
+" TYPESCRIPT STUFF
+autocmd FileType typescript.tsx nmap <buffer> <leader>gt :<C-u>echo tsuquyomi#hint()<CR>
+
+" GLOBAL GO TO
+function GoTo()
+  if &filetype ==# 'typescript' || &filetype ==# 'typescript.tsx'
+    call tsuquyomi#definition()
+  elseif &filetype ==# 'go'
+    call go#def#Jump('', 0)
+  else
+    echo &filetype
+  endif
+endfunction
+nmap <silent> <leader>gd :call GoTo()<CR>

@@ -129,8 +129,8 @@ if [[ -f "$custom" ]]; then
   source "$custom"
 fi
 
-# autoload -U promptinit; promptinit
-# prompt pure
+autoload -U promptinit; promptinit
+prompt pure
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/nwestvold/google-cloud-sdk/path.zsh.inc' ]; then . '/home/nwestvold/google-cloud-sdk/path.zsh.inc'; fi
