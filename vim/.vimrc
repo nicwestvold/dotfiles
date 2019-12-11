@@ -1,58 +1,52 @@
 call plug#begin('~/.vim/plugged')
 
-" set packpath^=~/.vim
-" packadd minpac
-
-" call minpac#init()
-
-" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
-" call minpac#add('k-takata/minpac', {'type': 'opt'})
-
-" Add other plugins here.
-Plug 'mileszs/ack.vim'
-Plug 'jremmen/vim-ripgrep'
-Plug 'w0rp/ale'
+" functionality
 " call minpac#add('Shougo/deoplete.nvim')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-if (has("nvim"))
-  Plug 'mattn/emmet-vim'
-endif
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-commentary'
-Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'matze/vim-move'
+" Plug 'janko/vim-test'
+Plug 'airblade/vim-gitgutter'
+Plug 'sheerun/vim-polyglot'
+Plug 'vim-syntastic/syntastic'
+
+" languages
 Plug 'elixir-editors/vim-elixir'
 Plug 'mhinz/vim-mix-format'
-Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
+" call minpac#add('racer-rust/vim-racer')
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'ElmCast/elm-vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'Quramy/tsuquyomi', { 'do': 'npm -g install typescript' }
 Plug 'rhysd/vim-crystal'
 Plug 'dleonard0/pony-vim-syntax'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'prettier/vim-prettier'
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-surround'
-Plug 'wakatime/vim-wakatime'
-Plug 'matze/vim-move'
-Plug 'ElmCast/elm-vim'
-Plug 'rust-lang/rust.vim'
-" call minpac#add('racer-rust/vim-racer')
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'janko/vim-test'
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi', { 'do': 'npm -g install typescript' }
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'vim-syntastic/syntastic'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
-" themes
+" utility
+Plug 'w0rp/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'mileszs/ack.vim'
+Plug 'jremmen/vim-ripgrep'
+Plug 'mattn/emmet-vim'
+Plug 'prettier/vim-prettier', { 'do': 'npm install', 'branch': 'release/1.x' }
+Plug '/usr/local/bin/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'wakatime/vim-wakatime'
+Plug 'aserebryakov/vim-todo-lists'
+
+" themes / styling
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-one'
 Plug 'mhartington/oceanic-next'
 Plug 'jordwalke/flatlandia'
@@ -99,6 +93,7 @@ set rtp+=/usr/local/opt/fzf
 " let g:prettier#config#bracket_spacing = 'true'
 " let g:prettier#config#parser = 'babylon'
 " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
+autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
 
 " let g:javascript_plugin_flow = 1
 let g:ale_linters = {
@@ -131,10 +126,10 @@ set laststatus=2
 " let g:go_metalinter_autosave = 1
 " let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 " let g:go_metalinter_deadline = "5s"
-let g:go_metalinter_enabled = ['vet', 'errcheck']
-let g:go_metalinter_autosave = 1
-let g:go_metalinter_autosave_enabled = ['vet']
-let g:go_metalinter_deadline = "5s"
+
+" let g:go_metalinter_enabled = ['vet', 'errcheck'] let g:go_metalinter_autosave = 1
+" let g:go_metalinter_autosave_enabled = ['vet']
+" let g:go_metalinter_deadline = "5s"
 
 " JSX plugin settings. allow both .js and .jsx
 let g:jsx_ext_required = 0
@@ -172,6 +167,8 @@ if (has("nvim"))
     set termguicolors
   endif
 
+  syntax enable
+
   " this prevent neovim from changing the cursor on insert mode
   set guicursor=
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -180,12 +177,18 @@ if (has("nvim"))
   " colorscheme challenger_deep
   " colorscheme flatlandia
   " let g:airline_theme='flatlandia'
+  " colorscheme OceanicNext
+  " let g:airline_theme='oceanicnext'
+  " colorscheme one
+  " let g:airline_theme='one'
+
+  syntax on
+  let g:oceanic_next_terminal_bold = 1
+  let g:oceanic_next_terminal_italic = 1
   colorscheme OceanicNext
   let g:airline_theme='oceanicnext'
   " https://github.com/mhartington/oceanic-next/issues/40
   set t_ut=
-  " colorscheme one
-  " set background=dark
 
   " Use deoplete.
   " let g:deoplete#enable_at_startup = 1
@@ -226,6 +229,7 @@ nmap <silent> <leader>tg :TestVisit<CR>
 
 " TYPESCRIPT STUFF
 autocmd FileType typescript.tsx nmap <buffer> <leader>gt :<C-u>echo tsuquyomi#hint()<CR>
+autocmd FileType typescript nmap <buffer> <leader>gt :<C-u>echo tsuquyomi#hint()<CR>
 
 " GLOBAL GO TO
 function GoTo()
@@ -238,3 +242,6 @@ function GoTo()
   endif
 endfunction
 nmap <silent> <leader>gd :call GoTo()<CR>
+
+" Find
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)

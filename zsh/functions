@@ -4,6 +4,10 @@ markdown() {
   open /Applications/Markdown\ Pro.app "$1"
 }
 
+function fnd {
+  nvim +"Find $*";
+}
+
 ######## golang stuff
 
 # This goes up from current folder looking for a folder

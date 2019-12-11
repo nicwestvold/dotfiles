@@ -140,3 +140,6 @@ if [ -f '/home/nwestvold/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/n
 
 # direnv
 # eval "$(direnv hook zsh)"
+
+# autoenv
+# source $(brew --prefix autoenv)/activate.sh

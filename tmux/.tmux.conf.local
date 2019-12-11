@@ -347,3 +347,8 @@ unbind [
 bind Escape copy-mode
 unbind p
 bind p paste-buffer
+
+# Fix vim theme issue
+# https://github.com/mhartington/oceanic-next/issues/51
+set -ga terminal-overrides ",xterm-256color:Tc"
+
