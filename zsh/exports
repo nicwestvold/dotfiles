@@ -31,3 +31,6 @@ export PATH=$HOME/bin:$PATH
 
 # flutter
 export PATH=$PATH:$HOME/flutter/bin
+
+# brew
+export HOMEBREW_NO_ANALYTICS=1
