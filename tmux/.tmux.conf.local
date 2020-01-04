@@ -296,7 +296,7 @@ tmux_conf_copy_to_os_clipboard=true
 # move status line to top
 #set -g status-position top
 
-bind-key -T copy-mode C-\ send-keys -X copy-pipe-and-cancel "pbcopy"
+bind-key -T copy-mode 'C-\' send-keys -X copy-pipe-and-cancel "pbcopy"
 
 # start with mouse mode enabled
 set -g mouse on

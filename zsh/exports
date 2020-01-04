@@ -9,6 +9,7 @@ export GOROOT="$(asdf where golang $(asdf current golang | awk '{print $1}'))/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$GOROOT/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 export SCHEMA_PATH=$HOME/go/src
 
 # FZF setttings
