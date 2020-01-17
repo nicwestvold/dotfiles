@@ -21,7 +21,7 @@ Plug 'rust-lang/rust.vim'
 " call minpac#add('racer-rust/vim-racer')
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'ElmCast/elm-vim'
+" Plug 'ElmCast/elm-vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
@@ -30,12 +30,12 @@ Plug 'rhysd/vim-crystal'
 Plug 'dleonard0/pony-vim-syntax'
 
 " utility
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mileszs/ack.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'mattn/emmet-vim'
-Plug 'prettier/vim-prettier', { 'do': 'npm install', 'branch': 'release/1.x' }
+" Plug 'prettier/vim-prettier', { 'do': 'npm install', 'branch': 'release/1.x' }
 Plug '/usr/local/bin/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
@@ -93,24 +93,26 @@ set rtp+=/usr/local/opt/fzf
 " let g:prettier#config#bracket_spacing = 'true'
 " let g:prettier#config#parser = 'babylon'
 " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
-autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+" autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " let g:javascript_plugin_flow = 1
-let g:ale_linters = {
-\   'javascript': ['eslint', 'flow'],
-\}
+" let g:ale_linters = {
+" \   'javascript': ['eslint', 'flow'],
+" \}
 
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'elixir': ['mix_format'],
-\   'javascript': ['eslint'],
-\}
+" let g:ale_fixers = {
+" \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+" \   'elixir': ['mix_format'],
+" \   'javascript': ['eslint'],
+" \}
 
 " Set this variable to 1 to fix files when you save them.
-let g:ale_fix_on_save = 1
+" let g:ale_fix_on_save = 1
 
-let g:polyglot_disabled = ['elm']
-let g:elm_format_autosave = 1
+" let g:polyglot_disabled = ['elm']
+" let g:elm_format_autosave = 1
 
 " for devicons
 set encoding=utf8
