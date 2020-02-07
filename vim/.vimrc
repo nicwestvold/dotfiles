@@ -35,7 +35,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mileszs/ack.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'mattn/emmet-vim'
-" Plug 'prettier/vim-prettier', { 'do': 'npm install', 'branch': 'release/1.x' }
+Plug 'prettier/vim-prettier', { 'do': 'npm install', 'branch': 'release/1.x' }
 Plug '/usr/local/bin/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
@@ -88,14 +88,15 @@ set rtp+=/usr/local/opt/fzf
 " set autochdir
 
 " run prettier on save
-" let g:prettier#autoformat = 0
+let g:prettier#autoformat = 0
 " let g:prettier#config#print_width = 100
 " let g:prettier#config#bracket_spacing = 'true'
 " let g:prettier#config#parser = 'babylon'
 " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
 " autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " let g:javascript_plugin_flow = 1
 " let g:ale_linters = {
