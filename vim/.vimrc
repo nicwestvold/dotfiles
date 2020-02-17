@@ -137,7 +137,7 @@ set laststatus=2
 " JSX plugin settings. allow both .js and .jsx
 let g:jsx_ext_required = 0
 
-" format {ex,exs} on save
+" format {ex,exs} on save (mix format is available on elixir >= 1.6)
 let g:mix_format_on_save = 1
 
 " format rust on save
