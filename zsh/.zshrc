@@ -102,7 +102,7 @@ export EDITOR='nvim'
 # echo -e "\n. $(brew --prefix asdf)/asdf.sh" >> ~/.bash_profile
 # echo -e "\n. $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash" >> ~/.bash_profile
 . $(brew --prefix asdf)/asdf.sh
-. $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+# . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
 
 
 # . $HOME/.asdf/installs/ocaml/$(asdf current ocaml | awk '{print $1}')/opam-init/init.zsh > /dev/null 2> /dev/null || true
