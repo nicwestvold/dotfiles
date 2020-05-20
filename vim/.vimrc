@@ -41,7 +41,6 @@ set updatetime=50
 call plug#begin('~/.vim/plugged')
 
 " functionality
-" call minpac#add('Shougo/deoplete.nvim')
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-commentary'
@@ -54,17 +53,14 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-syntastic/syntastic'
 
 " languages
-Plug 'elixir-editors/vim-elixir'
-Plug 'mhinz/vim-mix-format'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rust-lang/rust.vim'
 " call minpac#add('racer-rust/vim-racer')
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-" Plug 'ElmCast/elm-vim'
+Plug 'ElmCast/elm-vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'leafgarland/typescript-vim'
-" Plug 'peitalin/vim-jsx-typescript'
 " Plug 'Quramy/tsuquyomi', { 'do': 'npm -g install typescript' }
 Plug 'rhysd/vim-crystal'
 Plug 'dleonard0/pony-vim-syntax'
@@ -87,10 +83,7 @@ Plug 'aserebryakov/vim-todo-lists'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'rakr/vim-one'
 Plug 'mhartington/oceanic-next'
-Plug 'jordwalke/flatlandia'
-Plug 'challenger-deep-theme/vim'
 Plug 'machakann/vim-highlightedyank'
 
 " not yet using
@@ -107,34 +100,12 @@ let mapleader=" "
 
 set rtp+=/usr/local/opt/fzf
 
-" automatically change directories
-" set autochdir
-
 " run prettier on save
 let g:prettier#autoformat = 0
-" let g:prettier#config#print_width = 100
-" let g:prettier#config#bracket_spacing = 'true'
-" let g:prettier#config#parser = 'babylon'
-" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
-" autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-
-" command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-" let g:javascript_plugin_flow = 1
-" let g:ale_linters = {
-" \   'javascript': ['eslint', 'flow'],
-" \}
-
-" let g:ale_fixers = {
-" \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-" \   'elixir': ['mix_format'],
-" \   'javascript': ['eslint'],
-" \}
 
 " Set this variable to 1 to fix files when you save them.
 " let g:ale_fix_on_save = 1
-
 " let g:polyglot_disabled = ['elm']
 " let g:elm_format_autosave = 1
 
@@ -145,17 +116,6 @@ set encoding=utf8
 let g:airline_powerline_fonts = 1
 " always show the last status
 set laststatus=2
-" let g:airline_theme='one'
-
-" golang -> https://github.com/fatih/vim-go-tutorial#check-it
-" let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-" let g:go_metalinter_autosave = 1
-" let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-" let g:go_metalinter_deadline = "5s"
-
-" let g:go_metalinter_enabled = ['vet', 'errcheck'] let g:go_metalinter_autosave = 1
-" let g:go_metalinter_autosave_enabled = ['vet']
-" let g:go_metalinter_deadline = "5s"
 
 " JSX plugin settings. allow both .js and .jsx
 let g:jsx_ext_required = 0
@@ -167,11 +127,7 @@ let g:mix_format_on_save = 1
 let g:rustfmt_autosave = 1
 
 " NERDTree
-" open NERDTree
 autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" shortcut to toggle
-" map <C-n> :NERDTreeToggle<CR>
 map <C-m> :NERDTreeToggle<CR>
 " quit NERDTree when opening file
 let NERDTreeQuitOnOpen = 1
@@ -183,32 +139,17 @@ autocmd FileType nerdtree setlocal relativenumber
 " only prefer to count using decimal and base 10 numbers
 set nrformats=
 
-" these two cause an error in neovim
-" set winheight=30
-" set winminheight=5
-
+" neovim settings
 if (has("nvim"))
   " this helps neovim match the colors
   if (has("termguicolors"))
     set termguicolors
   endif
 
-  syntax enable
-
   " this prevent neovim from changing the cursor on insert mode
   set guicursor=
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-  " setting the theme
-  " colorscheme challenger_deep
-  " colorscheme flatlandia
-  " let g:airline_theme='flatlandia'
-  " colorscheme OceanicNext
-  " let g:airline_theme='oceanicnext'
-  " colorscheme one
-  " let g:airline_theme='one'
-
-  syntax on
   let g:oceanic_next_terminal_bold = 1
   let g:oceanic_next_terminal_italic = 1
   colorscheme OceanicNext
@@ -216,8 +157,6 @@ if (has("nvim"))
   " https://github.com/mhartington/oceanic-next/issues/40
   set t_ut=
 
-  " Use deoplete.
-  " let g:deoplete#enable_at_startup = 1
   " CoC setup
   " Use tab for trigger completion with characters ahead and navigate.
   " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -237,14 +176,11 @@ if (has("nvim"))
 
   " show the replacements
   set inccommand=nosplit
+
+  nmap <leader>gd <Plug>(coc-definition)
+  nmap <leader>gr <Plug>(coc-references)
+  nmap <leader>gt <Plug>(coc-type-definition)
 endif
-
-" Allows Emmet Expansion with the Tab key
-" let g:user_emmet_leader_key=','
-
-" load custom settings
-" source ~/.dotfiles/.vim/custom.vim
-" source ~/dotfiles/vim/vimrc.vim
 
 " #### VIM TEST MAPPINGS ####
 nmap <silent> <leader>tn :TestNearest<CR>
@@ -261,11 +197,7 @@ nmap <silent> <leader>tg :TestVisit<CR>
 autocmd FileType elm setlocal shiftwidth=4 softtabstop=4 expandtab
 
 
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gr <Plug>(coc-references)
-nmap <leader>gt <Plug>(coc-type-definition)
 noremap <C-p> :GFiles<CR>
-
 
 " GIT
 nmap <leader>gj :diffget //3<CR>
@@ -278,3 +210,7 @@ vnoremap K :m '<-2<CR>gv=gv
 
 " Find
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+if executable('rg')
+  let g:rg_derive_root='true'
+endif
