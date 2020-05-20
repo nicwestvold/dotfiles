@@ -16,7 +16,7 @@ Plug 'vim-syntastic/syntastic'
 " languages
 Plug 'elixir-editors/vim-elixir'
 Plug 'mhinz/vim-mix-format'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rust-lang/rust.vim'
 " call minpac#add('racer-rust/vim-racer')
 Plug 'pangloss/vim-javascript'
@@ -36,7 +36,7 @@ Plug 'mileszs/ack.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'mattn/emmet-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install', 'branch': 'release/1.x' }
-Plug '/usr/local/bin/fzf'
+Plug '/usr/local/bin/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -146,7 +146,7 @@ let g:rustfmt_autosave = 1
 " NERDTree
 " open NERDTree
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " shortcut to toggle
 " map <C-n> :NERDTreeToggle<CR>
 map <C-m> :NERDTreeToggle<CR>
@@ -231,23 +231,28 @@ nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tg :TestVisit<CR>
 
 " TYPESCRIPT STUFF
-autocmd FileType typescript.tsx nmap <buffer> <leader>gt :<C-u>echo tsuquyomi#hint()<CR>
-autocmd FileType typescript nmap <buffer> <leader>gt :<C-u>echo tsuquyomi#hint()<CR>
+" autocmd FileType typescript.tsx nmap <buffer> <leader>gt :<C-u>echo tsuquyomi#hint()<CR>
+" autocmd FileType typescript nmap <buffer> <leader>gt :<C-u>echo tsuquyomi#hint()<CR>
 
 " Elm stuff
 autocmd FileType elm setlocal shiftwidth=4 softtabstop=4 expandtab
 
 " GLOBAL GO TO
-function GoTo()
-  if &filetype ==# 'typescript' || &filetype ==# 'typescript.tsx'
-    call tsuquyomi#definition()
-  elseif &filetype ==# 'go'
-    call go#def#Jump('', 0)
-  else
-    echo &filetype
-  endif
-endfunction
-nmap <silent> <leader>gd :call GoTo()<CR>
+" function GoTo()
+"   if &filetype ==# 'typescript' || &filetype ==# 'typescript.tsx'
+"     call tsuquyomi#definition()
+"   elseif &filetype ==# 'go'
+"     call go#def#Jump('', 0)
+"   else
+"     echo &filetype
+"   endif
+" endfunction
+" nmap <silent> <leader>gd :call GoTo()<CR>
+
+nmap <leader>gd <Plug>(coc-definition)
+nmap <leader>gr <Plug>(coc-references)
+nmap <leader>gt <Plug>(coc-type-definition)
+noremap <C-p> :GFiles<CR>
 
 " Find
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
