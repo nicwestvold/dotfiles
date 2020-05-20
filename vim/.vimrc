@@ -1,8 +1,7 @@
 syntax on
 
 set hidden
-set softtabstop=0
-set tabstop=2
+set tabstop=2 softtabstop=2
 set shiftwidth=2
 set expandtab
 set smarttab
@@ -13,14 +12,14 @@ set hlsearch
 
 " mine
 filetype plugin on
-set ai
-set si
+set ai " autoindent
+set si " smartindent
 set ignorecase
 set smartcase
 
 " primeagean
+set noerrorbells
 set nowrap
-set smartcase
 set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
