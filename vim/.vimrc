@@ -237,22 +237,18 @@ nmap <silent> <leader>tg :TestVisit<CR>
 " Elm stuff
 autocmd FileType elm setlocal shiftwidth=4 softtabstop=4 expandtab
 
-" GLOBAL GO TO
-" function GoTo()
-"   if &filetype ==# 'typescript' || &filetype ==# 'typescript.tsx'
-"     call tsuquyomi#definition()
-"   elseif &filetype ==# 'go'
-"     call go#def#Jump('', 0)
-"   else
-"     echo &filetype
-"   endif
-" endfunction
-" nmap <silent> <leader>gd :call GoTo()<CR>
 
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gr <Plug>(coc-references)
 nmap <leader>gt <Plug>(coc-type-definition)
 noremap <C-p> :GFiles<CR>
+
+
+" GIT
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
+nmap <leader>gs :G<CR>
+
 
 " Find
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
