@@ -1,3 +1,44 @@
+syntax on
+
+set hidden
+set softtabstop=0
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smarttab
+set number
+set incsearch
+" highlight search
+set hlsearch
+
+" mine
+filetype plugin on
+set ai
+set si
+set ignorecase
+set smartcase
+
+" primeagean
+set nowrap
+set smartcase
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=50
+
+" set colorcolumn=80
+" highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+" end primeagean
+
+
 call plug#begin('~/.vim/plugged')
 
 " functionality
@@ -24,8 +65,8 @@ Plug 'mxw/vim-jsx'
 " Plug 'ElmCast/elm-vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'Quramy/tsuquyomi', { 'do': 'npm -g install typescript' }
+" Plug 'peitalin/vim-jsx-typescript'
+" Plug 'Quramy/tsuquyomi', { 'do': 'npm -g install typescript' }
 Plug 'rhysd/vim-crystal'
 Plug 'dleonard0/pony-vim-syntax'
 
@@ -60,27 +101,10 @@ Plug 'machakann/vim-highlightedyank'
 
 call plug#end()
 
-set nocompatible
-set incsearch
-set hlsearch
 
-syntax on
-filetype plugin on
 
-set number
-set expandtab
-set smarttab
-set shiftwidth=2
-set softtabstop=0
-set tabstop=2
+let mapleader=" "
 
-let mapleader=","
-
-set ai
-set si
-
-set ignorecase
-set smartcase
 
 set rtp+=/usr/local/opt/fzf
 
@@ -217,7 +241,7 @@ if (has("nvim"))
 endif
 
 " Allows Emmet Expansion with the Tab key
-let g:user_emmet_leader_key=','
+" let g:user_emmet_leader_key=','
 
 " load custom settings
 " source ~/.dotfiles/.vim/custom.vim
@@ -249,6 +273,9 @@ nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 nmap <leader>gs :G<CR>
 
+" move selected lines up/down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 " Find
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
