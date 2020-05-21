@@ -67,6 +67,7 @@ Plug 'dleonard0/pony-vim-syntax'
 
 " utility
 " Plug 'w0rp/ale'
+Plug 'ycm-core/YouCompleteMe'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mileszs/ack.vim'
 Plug 'jremmen/vim-ripgrep'
@@ -84,7 +85,15 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhartington/oceanic-next'
+Plug 'cocopon/iceberg.vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'rakr/vim-one'
 Plug 'machakann/vim-highlightedyank'
+
+" games
+Plug 'ThePrimeagen/vim-be-good'
 
 " not yet using
 " call minpac#add('tomtom/tlib_vim')
@@ -146,16 +155,30 @@ if (has("nvim"))
     set termguicolors
   endif
 
+  " set background=dark
+  " colorscheme palenight
+
+  colorscheme one
+  set background=dark
+
+  " set termguicolors     " enable true colors support
+  " let ayucolor="light"  " for light version of theme
+  " let ayucolor="mirage" " for mirage version of theme
+  " let ayucolor="dark"   " for dark version of theme
+  " colorscheme ayu
+
   " this prevent neovim from changing the cursor on insert mode
   set guicursor=
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-  let g:oceanic_next_terminal_bold = 1
-  let g:oceanic_next_terminal_italic = 1
-  colorscheme OceanicNext
-  let g:airline_theme='oceanicnext'
+  " colorscheme nord
+  " let g:airline_theme='nord'
+  " let g:oceanic_next_terminal_bold = 1
+  " let g:oceanic_next_terminal_italic = 1
+  " colorscheme OceanicNext
+  " let g:airline_theme='oceanicnext'
   " https://github.com/mhartington/oceanic-next/issues/40
-  set t_ut=
+  " set t_ut=
 
   " CoC setup
   " Use tab for trigger completion with characters ahead and navigate.
