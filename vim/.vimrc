@@ -67,7 +67,7 @@ Plug 'dleonard0/pony-vim-syntax'
 
 " utility
 " Plug 'w0rp/ale'
-Plug 'ycm-core/YouCompleteMe'
+" Plug 'ycm-core/YouCompleteMe'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mileszs/ack.vim'
 Plug 'jremmen/vim-ripgrep'
