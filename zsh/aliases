@@ -2,3 +2,4 @@
 
 # all aliases go here...
 alias copy="xclip -r -selection clipboard"
+alias mux=tmuxinator
