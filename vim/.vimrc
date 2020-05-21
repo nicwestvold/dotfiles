@@ -90,6 +90,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'rakr/vim-one'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'machakann/vim-highlightedyank'
 
 " games
@@ -161,6 +162,8 @@ if (has("nvim"))
   colorscheme one
   set background=dark
 
+  " colorscheme dracula
+
   " set termguicolors     " enable true colors support
   " let ayucolor="light"  " for light version of theme
   " let ayucolor="mirage" " for mirage version of theme
@@ -225,6 +228,7 @@ noremap <C-p> :GFiles<CR>
 " GIT
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
+nmap <leader>gc :Gcommit -v<CR>
 nmap <leader>gs :G<CR>
 
 " move selected lines up/down
