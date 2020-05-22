@@ -5,7 +5,14 @@ set tabstop=2 softtabstop=2
 set shiftwidth=2
 set expandtab
 set smarttab
-set number
+" absolute line numbers + relative line numbers
+set nu rnu
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 set incsearch
 " highlight search
 set hlsearch
