@@ -12,6 +12,8 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
+" spellcheck
+" setlocal spell spelllang=en_us
 
 set incsearch
 " highlight search
