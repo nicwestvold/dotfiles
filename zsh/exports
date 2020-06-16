@@ -35,3 +35,6 @@ export PATH=$PATH:$HOME/flutter/bin
 
 # brew
 export HOMEBREW_NO_ANALYTICS=1
+
+# bat - color
+export BAT_THEME="Dracula"

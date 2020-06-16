@@ -84,6 +84,7 @@ Plug 'mattn/emmet-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install', 'branch': 'release/1.x' }
 Plug '/usr/local/bin/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'yuki-ycino/fzf-preview.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'wakatime/vim-wakatime'
@@ -214,7 +215,8 @@ if (has("nvim"))
 
   nmap <leader>gd <Plug>(coc-definition)
   nmap <leader>gr <Plug>(coc-references)
-  nmap <leader>gt <Plug>(coc-type-definition)
+  nmap <silent> <leader>gt <Plug>(coc-type-definition)
+  nmap <silent> <Leader>v <Plug>(coc-fix-current)
 endif
 
 " #### VIM TEST MAPPINGS ####
@@ -232,7 +234,8 @@ nmap <silent> <leader>tg :TestVisit<CR>
 autocmd FileType elm setlocal shiftwidth=4 softtabstop=4 expandtab
 
 
-noremap <C-p> :GFiles<CR>
+" noremap <C-p> :GFiles<CR>
+noremap <C-p> :FzfPreviewDirectory<CR>
 
 " GIT
 nmap <leader>gj :diffget //3<CR>
@@ -246,6 +249,9 @@ vnoremap K :m '<-2<CR>gv=gv
 
 " Find
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
 
 if executable('rg')
   let g:rg_derive_root='true'
