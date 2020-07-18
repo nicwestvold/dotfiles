@@ -70,7 +70,7 @@ Plug 'mxw/vim-jsx'
 Plug 'ElmCast/elm-vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'leafgarland/typescript-vim'
-" Plug 'Quramy/tsuquyomi', { 'do': 'npm -g install typescript' }
+Plug 'Quramy/tsuquyomi', { 'do': 'npm -g install typescript' }
 Plug 'rhysd/vim-crystal'
 Plug 'dleonard0/pony-vim-syntax'
 
@@ -215,8 +215,16 @@ if (has("nvim"))
 
   nmap <leader>gd <Plug>(coc-definition)
   nmap <leader>gr <Plug>(coc-references)
-  nmap <silent> <leader>gt <Plug>(coc-type-definition)
+  " nmap <silent> <leader>gt <Plug>(coc-type-definition)
   nmap <silent> <Leader>v <Plug>(coc-fix-current)
+  nnoremap <silent> <leader>gt :call <SID>show_documentation()<CR>
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    else
+      call CocAction('doHover')
+    endif
+  endfunction
 endif
 
 " #### VIM TEST MAPPINGS ####
@@ -243,6 +251,8 @@ nmap <leader>gf :diffget //2<CR>
 nmap <leader>gc :Gcommit -v<CR>
 nmap <leader>gs :G<CR>
 
+nmap <silent> <Leader>af :CocCommand eslint.executeAutofix<CR>
+
 " move selected lines up/down
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
@@ -253,6 +263,6 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 
-if executable('rg')
-  let g:rg_derive_root='true'
-endif
+" if executable('rg')
+"   let g:rg_derive_root='true'
+" endif
