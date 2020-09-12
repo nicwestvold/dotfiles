@@ -84,7 +84,11 @@ Plug 'mattn/emmet-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install', 'branch': 'release/1.x' }
 Plug '/usr/local/bin/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'yuki-ycino/fzf-preview.vim'
+" Plug 'yuki-ycino/fzf-preview.vim'
+
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
+
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'wakatime/vim-wakatime'

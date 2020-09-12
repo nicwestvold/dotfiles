@@ -129,8 +129,8 @@ if [[ -f "$custom" ]]; then
   source "$custom"
 fi
 
-autoload -U promptinit; promptinit
-prompt pure
+# autoload -U promptinit; promptinit
+# prompt pure
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/nwestvold/google-cloud-sdk/path.zsh.inc' ]; then . '/home/nwestvold/google-cloud-sdk/path.zsh.inc'; fi
@@ -144,3 +144,5 @@ if [ -f '/home/nwestvold/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/n
 # autoenv
 # source $(brew --prefix autoenv)/activate.sh
 [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
+
+eval "$(starship init zsh)"
