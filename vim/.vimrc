@@ -54,6 +54,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'matze/vim-move'
 Plug 'janko/vim-test'
@@ -245,9 +246,23 @@ nmap <silent> <leader>tg :TestVisit<CR>
 " Elm stuff
 autocmd FileType elm setlocal shiftwidth=4 softtabstop=4 expandtab
 
+" install coc plugins on update/install
+" let g:coc_global_extensions = [
+"       " \ 'coc-tslint-plugin',
+"       \ 'coc-tsserver',
+"       " \ 'coc-emmet',
+"       " \ 'coc-css',
+"       " \ 'coc-html',
+"       " \ 'coc-json',
+"       " \ 'coc-yank',
+"       " \ 'coc-prettier',
+"       \ 'coc-fzf-preview',
+"       \ 'coc-rls',
+"       \ 'coc-eslint'
+"       \ ]
 
 " noremap <C-p> :GFiles<CR>
-noremap <C-p> :FzfPreviewDirectory<CR>
+nnoremap <C-p> :CocCommand fzf-preview.DirectoryFiles <Cr>
 
 " GIT
 nmap <leader>gj :diffget //3<CR>

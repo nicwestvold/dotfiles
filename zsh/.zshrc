@@ -146,3 +146,7 @@ if [ -f '/home/nwestvold/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/n
 [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
 
 eval "$(starship init zsh)"
+
+  # Set Spaceship ZSH as a prompt
+  autoload -U promptinit; promptinit
+  prompt spaceship
