@@ -37,4 +37,4 @@ export PATH=$PATH:$HOME/flutter/bin
 export HOMEBREW_NO_ANALYTICS=1
 
 # bat - color
-export BAT_THEME="Dracula"
+export BAT_THEME="Nord"

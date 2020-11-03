@@ -105,6 +105,9 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'rakr/vim-one'
+Plug 'joshdick/onedark.vim'
+Plug 'KeitaNakamura/neodark.vim'
+Plug 'romgrk/doom-one.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'machakann/vim-highlightedyank'
 
@@ -175,9 +178,12 @@ if (has("nvim"))
   " colorscheme palenight
 
   colorscheme one
+  " colorscheme onedark
+  " colorscheme doom-one
+  " colorscheme neodark
+  " colorscheme dracula
   set background=dark
 
-  " colorscheme dracula
 
   " set termguicolors     " enable true colors support
   " let ayucolor="light"  " for light version of theme
