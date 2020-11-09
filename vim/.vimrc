@@ -249,6 +249,14 @@ nmap <silent> <leader>tg :TestVisit<CR>
 " autocmd FileType typescript.tsx nmap <buffer> <leader>gt :<C-u>echo tsuquyomi#hint()<CR>
 " autocmd FileType typescript nmap <buffer> <leader>gt :<C-u>echo tsuquyomi#hint()<CR>
 
+" coc-tsserver has been giving linting errors. `:set ft` revealed that it
+" thought the filetype was "typescript" instead of "typescriptreact"
+augroup ReactFiletypes
+  autocmd!
+  autocmd BufRead,BufNewFile *.jsx set filetype=javascriptreact
+  autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact
+augroup END
+
 " Elm stuff
 autocmd FileType elm setlocal shiftwidth=4 softtabstop=4 expandtab
 
