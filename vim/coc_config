@@ -1,4 +1,7 @@
 {
+  "typescript.suggestionActions.enabled": false,
+  "tsserver.maxTsServerMemory": 100000,
+  "tsserver.disableAutomaticTypeAcquisition": true,
   "languageserver": {
     "elmLS": {
       "command": "elm-language-server",
