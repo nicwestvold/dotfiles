@@ -57,38 +57,37 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'matze/vim-move'
-Plug 'janko/vim-test'
+" Plug 'janko/vim-test'
+Plug 'sethlowie/vim-test'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 
 " languages
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rust-lang/rust.vim'
 " call minpac#add('racer-rust/vim-racer')
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+" Plug 'pangloss/vim-javascript'
+" Plug 'mxw/vim-jsx'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'ElmCast/elm-vim'
+Plug 'andys8/vim-elm-syntax'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi', { 'do': 'npm -g install typescript' }
+" Plug 'leafgarland/typescript-vim'
 Plug 'rhysd/vim-crystal'
 Plug 'dleonard0/pony-vim-syntax'
 
 " utility
-" Plug 'w0rp/ale'
-" Plug 'ycm-core/YouCompleteMe'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'mileszs/ack.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'mattn/emmet-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install', 'branch': 'release/1.x' }
-Plug '/usr/local/bin/fzf', { 'do': { -> fzf#install() } }
+" Plug '/usr/local/bin/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" Plug 'yuki-ycino/fzf-preview.vim'
-
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
+Plug 'chr4/nginx.vim'
+
 
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -293,9 +292,7 @@ vnoremap K :m '<-2<CR>gv=gv
 " Find
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
-cnoreabbrev Ack Ack!
-nnoremap <Leader>a :Ack!<Space>
-
 " if executable('rg')
 "   let g:rg_derive_root='true'
 " endif
+
