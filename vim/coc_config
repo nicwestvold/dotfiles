@@ -12,6 +12,6 @@
       }
     }
   },
-  "codeLens.enable": true
+  "codeLens.enable": false
 }
 
