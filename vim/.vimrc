@@ -76,6 +76,7 @@ Plug 'mustache/vim-mustache-handlebars'
 " Plug 'leafgarland/typescript-vim'
 Plug 'rhysd/vim-crystal'
 Plug 'dleonard0/pony-vim-syntax'
+Plug 'IrenejMarc/vim-mint'
 
 " utility
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
