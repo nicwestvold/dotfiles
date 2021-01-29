@@ -153,5 +153,6 @@ if [ -f '/home/nwestvold/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/n
 eval "$(starship init zsh)"
 
   # Set Spaceship ZSH as a prompt
+  # npm install -g spaceship-prompt
   autoload -U promptinit; promptinit
   prompt spaceship
