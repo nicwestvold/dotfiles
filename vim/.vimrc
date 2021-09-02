@@ -85,8 +85,8 @@ Plug 'mattn/emmet-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install', 'branch': 'release/1.x' }
 " Plug '/usr/local/bin/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
+" Plug 'junegunn/fzf.vim'
+Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc', 'do': ':UpdateRemotePlugins'  }
 Plug 'chr4/nginx.vim'
 
 
@@ -238,6 +238,26 @@ if (has("nvim"))
   endfunction
 endif
 
+" remaps
+nnoremap Y y$
+
+" keep it centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" jumplist mutation
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+
+" moving text
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap <C-j> <esc>:m .+1<CR>==
+inoremap <C-k> <esc>:m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
+
 " #### VIM TEST MAPPINGS ####
 nmap <silent> <leader>tn :TestNearest<CR>
 nmap <silent> <leader>tf :TestFile<CR>
@@ -261,19 +281,21 @@ augroup END
 autocmd FileType elm setlocal shiftwidth=4 softtabstop=4 expandtab
 
 " install coc plugins on update/install
-" let g:coc_global_extensions = [
-"       " \ 'coc-tslint-plugin',
-"       \ 'coc-tsserver',
-"       " \ 'coc-emmet',
-"       " \ 'coc-css',
-"       " \ 'coc-html',
-"       " \ 'coc-json',
-"       " \ 'coc-yank',
-"       " \ 'coc-prettier',
-"       \ 'coc-fzf-preview',
-"       \ 'coc-rls',
-"       \ 'coc-eslint'
-"       \ ]
+let g:coc_global_extensions = [
+      \ 'coc-css',
+      \ 'coc-emmet',
+      \ 'coc-eslint',
+      \ 'coc-go',
+      \ 'coc-html',
+      \ 'coc-json',
+      \ 'coc-fzf-preview',
+      \ 'coc-prettier',
+      \ 'coc-rls',
+      \ 'coc-tailwindcss',
+      \ 'coc-tslint-plugin',
+      \ 'coc-tsserver',
+      \ 'coc-yank',
+      \ ]
 
 " noremap <C-p> :GFiles<CR>
 nnoremap <C-p> :CocCommand fzf-preview.DirectoryFiles <Cr>

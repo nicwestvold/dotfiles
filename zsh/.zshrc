@@ -150,9 +150,9 @@ if [ -f '/home/nwestvold/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/n
 # source $(brew --prefix autoenv)/activate.sh
 [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
 
-eval "$(starship init zsh)"
+# Set Spaceship ZSH as a prompt
+# npm install -g spaceship-prompt
+autoload -U promptinit; promptinit
+prompt spaceship
 
-  # Set Spaceship ZSH as a prompt
-  # npm install -g spaceship-prompt
-  autoload -U promptinit; promptinit
-  prompt spaceship
+eval "$(starship init zsh)"
