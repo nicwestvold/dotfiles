@@ -156,3 +156,4 @@ autoload -U promptinit; promptinit
 prompt spaceship
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"

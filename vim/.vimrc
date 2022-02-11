@@ -77,6 +77,7 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'rhysd/vim-crystal'
 Plug 'dleonard0/pony-vim-syntax'
 Plug 'IrenejMarc/vim-mint'
+Plug 'rescript-lang/vim-rescript'
 
 " utility
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -226,6 +227,7 @@ if (has("nvim"))
 
   nmap <leader>gd <Plug>(coc-definition)
   nmap <leader>gr <Plug>(coc-references)
+  nmap <leader>rn <Plug>(coc-rename)
   " nmap <silent> <leader>gt <Plug>(coc-type-definition)
   nmap <silent> <Leader>v <Plug>(coc-fix-current)
   nnoremap <silent> <leader>gt :call <SID>show_documentation()<CR>
@@ -244,7 +246,7 @@ nnoremap Y y$
 " keep it centered
 nnoremap n nzzzv
 nnoremap N Nzzzv
-nnoremap J mzJ`z
+" nnoremap J mzJ`z
 
 " jumplist mutation
 nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
