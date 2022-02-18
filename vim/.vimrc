@@ -78,6 +78,7 @@ Plug 'rhysd/vim-crystal'
 Plug 'dleonard0/pony-vim-syntax'
 Plug 'IrenejMarc/vim-mint'
 Plug 'rescript-lang/vim-rescript'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
 " utility
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -131,7 +132,7 @@ set rtp+=/usr/local/opt/fzf
 
 " run prettier on save
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.svelte PrettierAsync
 
 " Set this variable to 1 to fix files when you save them.
 " let g:ale_fix_on_save = 1
