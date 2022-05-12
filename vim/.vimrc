@@ -49,77 +49,76 @@ set updatetime=50
 
 call plug#begin('~/.vim/plugged')
 
-" functionality
-Plug 'scrooloose/nerdtree'
+""" functionality
+Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
 Plug 'tpope/vim-commentary'
+" Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
-Plug 'matze/vim-move'
-" Plug 'janko/vim-test'
 Plug 'sethlowie/vim-test'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
-" Plug 'vim-syntastic/syntastic'
+" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
-" languages
+" Git worktree
+Plug 'ThePrimeagen/git-worktree.nvim'
+" status bar
+Plug 'hoob3rt/lualine.nvim'
+Plug 'nvim-lua/popup.nvim'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+""" languages
+"" Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"" Rust
 Plug 'rust-lang/rust.vim'
-" call minpac#add('racer-rust/vim-racer')
-" Plug 'pangloss/vim-javascript'
-" Plug 'mxw/vim-jsx'
+Plug 'racer-rust/vim-racer'
+"" JS/TS
+Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'leafgarland/typescript-vim'
+"" Elm
 Plug 'ElmCast/elm-vim'
-Plug 'andys8/vim-elm-syntax'
-Plug 'mustache/vim-mustache-handlebars'
-" Plug 'leafgarland/typescript-vim'
-Plug 'rhysd/vim-crystal'
-Plug 'dleonard0/pony-vim-syntax'
-Plug 'IrenejMarc/vim-mint'
-Plug 'rescript-lang/vim-rescript'
+"" Other
+" Plug 'mustache/vim-mustache-handlebars'
+" Plug 'rhysd/vim-crystal'
+" Plug 'dleonard0/pony-vim-syntax'
+" Plug 'IrenejMarc/vim-mint'
+" Plug 'rescript-lang/vim-rescript'
+"" svelte
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
-" utility
+""" utility
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jremmen/vim-ripgrep'
 Plug 'mattn/emmet-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install', 'branch': 'release/1.x' }
-" Plug '/usr/local/bin/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
-Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc', 'do': ':UpdateRemotePlugins'  }
-Plug 'chr4/nginx.vim'
+" Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc', 'do': ':UpdateRemotePlugins'  }
+" Plug 'chr4/nginx.vim'
 
+Plug 'machakann/vim-highlightedyank'
 
-Plug 'terryma/vim-multiple-cursors'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'wakatime/vim-wakatime'
-Plug 'aserebryakov/vim-todo-lists'
-
-" themes / styling
+""" themes / styling
+" used in nerdtree
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'mhartington/oceanic-next'
-Plug 'cocopon/iceberg.vim'
-Plug 'arcticicestudio/nord-vim'
-Plug 'ayu-theme/ayu-vim'
-Plug 'drewtempelmeyer/palenight.vim'
 Plug 'rakr/vim-one'
 Plug 'joshdick/onedark.vim'
-Plug 'KeitaNakamura/neodark.vim'
 Plug 'romgrk/doom-one.vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'machakann/vim-highlightedyank'
+Plug 'EdenEast/nightfox.nvim'
 
-" games
-Plug 'ThePrimeagen/vim-be-good'
-
-" not yet using
-" call minpac#add('tomtom/tlib_vim')
-" call minpac#add('MarcWeber/vim-addon-mw-utils')
-" call minpac#add('garbas/vim-snipmate')
+""" games
+" Plug 'ThePrimeagen/vim-be-good'
 
 call plug#end()
 
@@ -158,13 +157,19 @@ let g:rustfmt_autosave = 1
 
 " NERDTree
 autocmd StdinReadPre * let s:std_in=1
-map <C-m> :NERDTreeToggle<CR>
 " quit NERDTree when opening file
 let NERDTreeQuitOnOpen = 1
 " enable line numbers
 let NERDTreeShowLineNumbers = 1
+" show hidden files
+let NERDTreeShowHidden=1
 " use relative line numbers
 autocmd FileType nerdtree setlocal relativenumber
+nnoremap <leader>n :NERDTreeFocus<CR>
+" nnoremap <C-n> :NERDTree<CR>
+" nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <leader><cr> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
 " only prefer to count using decimal and base 10 numbers
 set nrformats=
@@ -180,6 +185,7 @@ if (has("nvim"))
   " colorscheme palenight
 
   colorscheme one
+  " colorscheme nightfox
   " colorscheme onedark
   " colorscheme doom-one
   " colorscheme neodark
@@ -301,7 +307,20 @@ let g:coc_global_extensions = [
       \ ]
 
 " noremap <C-p> :GFiles<CR>
-nnoremap <C-p> :CocCommand fzf-preview.DirectoryFiles <Cr>
+" nnoremap <C-p> :CocCommand fzf-preview.DirectoryFiles <Cr>
+" Telescope
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" same as above, but using Lua
+" nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+" nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+" nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+" nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+" :lua require('telescope').load_extension('fzf')
 
 " GIT
 nmap <leader>gj :diffget //3<CR>
@@ -322,3 +341,12 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 "   let g:rg_derive_root='true'
 " endif
 
+" git worktree
+" nvim_set_keymap('n', '<Leader>w', ':lua require("telescope").extensions.git_worktree.git_worktrees()<CR>', { noremap = true })
+" nvim_set_keymap('n', '<Leader>nw', ':lua require("telescope").extensions.git_worktree.create_git_worktree()<CR>', { noremap = true })
+nnoremap <leader>w :lua require("telescope").extensions.git_worktree.git_worktrees()<cr>
+nnoremap <leader>nw :lua require("telescope").extensions.git_worktree.create_git_worktree()<cr>
+
+" syntax highlighting
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
