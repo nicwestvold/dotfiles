@@ -4,8 +4,8 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.vim/plugged')
 
 -- """ functionality
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'nvim-tree/nvim-web-devicons' -- " optional, for file icons
+Plug 'nvim-tree/nvim-tree.lua'
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'

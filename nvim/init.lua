@@ -1,6 +1,39 @@
 require("settings")
 require("plugins")
 
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+-- empty setup using defaults
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
+      },
+    },
+    number = true,
+    relativenumber = true,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = false,
+  },
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    },
+  },
+})
+
+vim.keymap.set('n', '<leader><cr>', ':NvimTreeToggle<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>n', ':NvimTreeFocus<CR>', { noremap = true })
+vim.keymap.set('n', '<C-f>', ':NvimTreeFindFile<CR>', { noremap = true })
+
 -- GitLens
 -- vim.api.nvim_create_autocmd("CursorHold", {
 --     pattern = { "*" },
@@ -36,23 +69,6 @@ vim.g.jsx_ext_required = 0
 vim.g.mix_format_on_save = 1
 -- " format rust on save
 vim.g.rustfmt_autosave = 1
-
--- NERDTree
-vim.cmd([[
-    " NERDTree
-    autocmd StdinReadPre * let s:std_in=1
-    " quit NERDTree when opening file
-    let NERDTreeQuitOnOpen = 1
-    " enable line numbers
-    let NERDTreeShowLineNumbers = 1
-    " show hidden files
-    let NERDTreeShowHidden=1
-    " use relative line numbers
-    autocmd FileType nerdtree setlocal relativenumber
-    nnoremap <leader>n :NERDTreeFocus<CR>
-    nnoremap <leader><cr> :NERDTreeToggle<CR>
-    nnoremap <C-f> :NERDTreeFind<CR>
-]])
 
 -- only prefer to count using decimal and base 10 numbers
 -- set nrformats=
