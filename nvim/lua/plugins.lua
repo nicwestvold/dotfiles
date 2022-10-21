@@ -34,6 +34,7 @@ vim.cmd("Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }")
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 -- "" JS/TS
+Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'leafgarland/typescript-vim'
@@ -43,7 +44,15 @@ Plug 'ElmCast/elm-vim'
 vim.cmd("Plug 'evanleck/vim-svelte', {'branch': 'main'}")
 
 -- """ utility
-vim.cmd("Plug 'neoclide/coc.nvim', {'branch': 'release'}")
+-- vim.cmd("Plug 'neoclide/coc.nvim', {'branch': 'release'}")
+Plug 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
+vim.cmd("Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }")
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+vim.cmd("Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}")
+
 Plug 'jremmen/vim-ripgrep'
 Plug 'mattn/emmet-vim'
 vim.cmd("Plug 'prettier/vim-prettier', { 'do': 'npm install', 'branch': 'release/1.x' }")

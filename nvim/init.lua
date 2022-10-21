@@ -1,6 +1,97 @@
 require("settings")
 require("plugins")
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+require('lspconfig').tsserver.setup({
+    capabilities = capabilities,
+  })
+require'lspconfig'.svelte.setup{}
+require'lspconfig'.tailwindcss.setup{}
+-- require'lspconfig'.rust_analyzer.setup{}
+require'lspconfig'.gopls.setup{}
+-- require'lspconfig'.elmls.setup{}
+-- require'lspconfig'.dockerls.setup{}
+
+require('lspsaga').init_lsp_saga()
+
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "css", "go", "html", "javascript", "json", "scss", "svelte", "tsx", "typescript", "yaml" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
+
+  -- List of parsers to ignore installing (for "all")
+  -- ignore_install = { "javascript" },
+
+  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- -- the name of the parser)
+    -- -- list of language that will be disabled
+    -- disable = { "c", "rust" },
+    -- -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+    -- disable = function(lang, buf)
+    --     local max_filesize = 100 * 1024 -- 100 KB
+    --     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+    --     if ok and stats and stats.size > max_filesize then
+    --         return true
+    --     end
+    -- end,
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+
+vim.o.completeopt = "menu,menuone,noselect"
+
+local cmp = require('cmp')
+cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      end,
+    },
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
 vim.g.mapleader = " "
 
 vim.cmd([[
@@ -38,6 +129,10 @@ require("nvim-tree").setup({
     open_file = {
       quit_on_open = true,
     },
+  },
+  -- using the 's' key will open the file using the system default to open that type of file
+  system_open = {
+    cmd = "",
   },
 })
 
@@ -90,63 +185,81 @@ vim.cmd([[
       set guicursor=
       let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-      " CoC setup
-      " Use tab for trigger completion with characters ahead and navigate.
-      " NOTE: There's always complete item selected by default, you may want to enable
-      " no select by `"suggest.noselect": true` in your configuration file.
-      " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-      " other plugin before putting this into your config.
-      inoremap <silent><expr> <TAB>
-            \ coc#pum#visible() ? coc#pum#next(1) :
-            \ CheckBackspace() ? "\<Tab>" :
-            \ coc#refresh()
-      inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-      
-      " Make <CR> to accept selected completion item or notify coc.nvim to format
-      " <C-g>u breaks current undo, please make your own choice.
-      inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                                    \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-      
-      function! CheckBackspace() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-      endfunction
-      
-      " Use <c-space> to trigger completion.
-        inoremap <silent><expr> <c-space> coc#refresh()
-      
-      " Use `[g` and `]g` to navigate diagnostics
-      " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-      nmap <silent> [g <Plug>(coc-diagnostic-prev)
-      nmap <silent> ]g <Plug>(coc-diagnostic-next)
+      "" " CoC setup
+      "" " Use tab for trigger completion with characters ahead and navigate.
+      "" " NOTE: There's always complete item selected by default, you may want to enable
+      "" " no select by `"suggest.noselect": true` in your configuration file.
+      "" " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+      "" " other plugin before putting this into your config.
+      "" inoremap <silent><expr> <TAB>
+      ""       \ coc#pum#visible() ? coc#pum#next(1) :
+      ""       \ CheckBackspace() ? "\<Tab>" :
+      ""       \ coc#refresh()
+      "" inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+      "" 
+      "" " Make <CR> to accept selected completion item or notify coc.nvim to format
+      "" " <C-g>u breaks current undo, please make your own choice.
+      "" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+      ""                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      "" 
+      "" function! CheckBackspace() abort
+      ""   let col = col('.') - 1
+      ""   return !col || getline('.')[col - 1]  =~# '\s'
+      "" endfunction
+      "" 
+      "" " Use <c-space> to trigger completion.
+      ""   inoremap <silent><expr> <c-space> coc#refresh()
+      "" 
+      "" " Use `[g` and `]g` to navigate diagnostics
+      "" " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+      "" nmap <silent> [g <Plug>(coc-diagnostic-prev)
+      "" nmap <silent> ]g <Plug>(coc-diagnostic-next)
 ]])
 
--- GoTo code navigation.
-vim.keymap.set('n', '<leader>gd', '<Plug>(coc-definition)', {})
-vim.keymap.set('n', '<leader>gt', '<Plug>(coc-type-definition)', {})
-vim.keymap.set('n', '<leader>gi', '<Plug>(coc-implementation)', {})
-vim.keymap.set('n', '<leader>gr', '<Plug>(coc-references)', {})
-vim.keymap.set('n', '<leader>v', '<Plug>(coc-fix-current)', {})
+-- -- GoTo code navigation.
+-- vim.keymap.set('n', '<leader>gd', '<Plug>(coc-definition)', {})
+-- vim.keymap.set('n', '<leader>gt', '<Plug>(coc-type-definition)', {})
+-- vim.keymap.set('n', '<leader>gi', '<Plug>(coc-implementation)', {})
+-- vim.keymap.set('n', '<leader>gr', '<Plug>(coc-references)', {})
+-- vim.keymap.set('n', '<leader>v', '<Plug>(coc-fix-current)', {})
+
+local nvim_set_keymap = vim.api.nvim_set_keymap
+
+nvim_set_keymap('n', '<Leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
+nvim_set_keymap('n', '<Leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true })
+nvim_set_keymap('n', '<Leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
+
+-- CHECK COVERAGE
+-- nvim_set_keymap('n', '<Leader>ff', '<cmd>! npm run check-coverage<CR>', { noremap = true })
+
+-- PREV/NEXT
+-- nvim_set_keymap('n', '<Leader>nn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
+-- nvim_set_keymap('n', '<Leader>NN', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
+
+nvim_set_keymap('n', '<Leader>af', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', { noremap = true, silent = true })
+nvim_set_keymap('n', '<Leader>gt', ':Lspsaga hover_doc<CR>', { noremap = true, silent = true })
+nvim_set_keymap('n', '<Leader>gh', ':Lspsaga code_action<CR>', { noremap = true, silent = true })
+-- nvim_set_keymap('i', '<Leader>c', 'compe#complete()', { noremap = true, silent = true, expr = true })
 
 vim.cmd([[
-      function! ShowDocumentation()
-        if CocAction('hasProvider', 'hover')
-          call CocActionAsync('doHover')
-        else
-          call feedkeys('K', 'in')
-        endif
-      endfunction
-      " Use K to show documentation in preview window.
-      nnoremap <silent> K :call ShowDocumentation()<CR>
-      
-      " Highlight the symbol and its references when holding the cursor.
-      autocmd CursorHold * silent call CocActionAsync('highlight')
-      
-      " Symbol renaming.
-      nmap <leader>rn <Plug>(coc-rename)
+      "" function! ShowDocumentation()
+      ""   if CocAction('hasProvider', 'hover')
+      ""     call CocActionAsync('doHover')
+      ""   else
+      ""     call feedkeys('K', 'in')
+      ""   endif
+      "" endfunction
+      "" " Use K to show documentation in preview window.
+      "" nnoremap <silent> K :call ShowDocumentation()<CR>
+      "" 
+      "" " Highlight the symbol and its references when holding the cursor.
+      "" autocmd CursorHold * silent call CocActionAsync('highlight')
+      "" 
+      "" " Symbol renaming.
+      "" nmap <leader>rn <Plug>(coc-rename)
 
-      " Use <c-space> to trigger completion.
-      inoremap <silent><expr> <c-space> coc#refresh()
+      "" " Use <c-space> to trigger completion.
+      "" inoremap <silent><expr> <c-space> coc#refresh()
 
       " show the replacements
       set inccommand=nosplit
@@ -160,13 +273,13 @@ vim.cmd([[
     nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
     nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
 
-    " coc-tsserver has been giving linting errors. `:set ft` revealed that it
-    " thought the filetype was "typescript" instead of "typescriptreact"
-    augroup ReactFiletypes
-      autocmd!
-      autocmd BufRead,BufNewFile *.jsx set filetype=javascriptreact
-      autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact
-    augroup END
+    "" " coc-tsserver has been giving linting errors. `:set ft` revealed that it
+    "" " thought the filetype was "typescript" instead of "typescriptreact"
+    "" augroup ReactFiletypes
+    ""   autocmd!
+    ""   autocmd BufRead,BufNewFile *.jsx set filetype=javascriptreact
+    ""   autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact
+    "" augroup END
 
     " Elm stuff
     autocmd FileType elm setlocal shiftwidth=4 softtabstop=4 expandtab
@@ -187,26 +300,26 @@ vim.keymap.set('n', '<leader>ts', ":TestSuite<CR>", { silent = true })
 vim.keymap.set('n', '<leader>tl', ":TestLast<CR>", { silent = true })
 vim.keymap.set('n', '<leader>tg', ":TestVisit<CR>", { silent = true })
 
--- CoC - install coc plugins on update/install
-vim.cmd([[
-      let g:coc_global_extensions = [
-          \ 'coc-css',
-          \ 'coc-emmet',
-          \ 'coc-eslint',
-          \ 'coc-go',
-          \ 'coc-html',
-          \ 'coc-json',
-          \ 'coc-fzf-preview',
-          \ 'coc-prettier',
-          \ 'coc-rls',
-          \ 'coc-tailwindcss',
-          \ 'coc-tslint-plugin',
-          \ 'coc-tsserver',
-          \ 'coc-yank',
-          \ ]
+-- -- CoC - install coc plugins on update/install
+-- vim.cmd([[
+--       let g:coc_global_extensions = [
+--           \ 'coc-css',
+--           \ 'coc-emmet',
+--           \ 'coc-eslint',
+--           \ 'coc-go',
+--           \ 'coc-html',
+--           \ 'coc-json',
+--           \ 'coc-fzf-preview',
+--           \ 'coc-prettier',
+--           \ 'coc-rls',
+--           \ 'coc-tailwindcss',
+--           \ 'coc-tslint-plugin',
+--           \ 'coc-tsserver',
+--           \ 'coc-yank',
+--           \ ]
 
-      nmap <silent> <Leader>af :CocCommand eslint.executeAutofix<CR>
-]])
+--       nmap <silent> <Leader>af :CocCommand eslint.executeAutofix<CR>
+-- ]])
 
 -- Find
 vim.cmd([[command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)]])
