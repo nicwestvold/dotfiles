@@ -52,16 +52,13 @@ vim.cmd("Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }")
 Plug 'machakann/vim-highlightedyank'
 
 -- """ themes / styling
--- " used in nerdtree
-Plug 'ryanoasis/vim-devicons'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'nvim-lualine/lualine.nvim'
+-- " If you want to have icons in your statusline choose one of these
+Plug 'kyazdani42/nvim-web-devicons'
+
 Plug 'rakr/vim-one'
 Plug 'joshdick/onedark.vim'
 Plug 'romgrk/doom-one.vim'
 Plug 'EdenEast/nightfox.nvim'
-
--- """ games
--- " Plug 'ThePrimeagen/vim-be-good'
 
 vim.call('plug#end')

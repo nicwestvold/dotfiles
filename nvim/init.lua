@@ -1,6 +1,17 @@
 require("settings")
 require("plugins")
 
+vim.g.mapleader = " "
+
+vim.cmd([[
+    set rtp+=/usr/local/opt/fzf
+
+    " run prettier on save
+    let g:prettier#autoformat = 0
+    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.svelte PrettierAsync
+]])
+
+-- NvimTree
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -34,6 +45,10 @@ vim.keymap.set('n', '<leader><cr>', ':NvimTreeToggle<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>n', ':NvimTreeFocus<CR>', { noremap = true })
 vim.keymap.set('n', '<C-f>', ':NvimTreeFindFile<CR>', { noremap = true })
 
+require('lualine').setup {
+  options = { theme = 'ayu_mirage' },
+}
+
 -- GitLens
 -- vim.api.nvim_create_autocmd("CursorHold", {
 --     pattern = { "*" },
@@ -44,21 +59,9 @@ vim.keymap.set('n', '<C-f>', ':NvimTreeFindFile<CR>', { noremap = true })
 --     command = "lua require'gitblame'.clearBlameVirtText()",
 -- })
 
-vim.g.mapleader = " "
-
-vim.cmd([[
-    set rtp+=/usr/local/opt/fzf
-
-    " run prettier on save
-    let g:prettier#autoformat = 0
-    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.svelte PrettierAsync
-]])
-
 -- " for devicons
 vim.o.encoding = 'utf8'
 
--- " use powerline fonts
-vim.g.airline_powerline_fonts = 1
 -- " always show the last status
 vim.o.laststatus = 2
 
