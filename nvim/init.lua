@@ -238,6 +238,7 @@ nvim_set_keymap('n', '<Leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>', { norema
 
 nvim_set_keymap('n', '<Leader>af', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', { noremap = true, silent = true })
 nvim_set_keymap('n', '<Leader>gt', ':Lspsaga hover_doc<CR>', { noremap = true, silent = true })
+nvim_set_keymap('n', 'K', ':Lspsaga hover_doc<CR>', { noremap = true, silent = true })
 nvim_set_keymap('n', '<Leader>gh', ':Lspsaga code_action<CR>', { noremap = true, silent = true })
 -- nvim_set_keymap('i', '<Leader>c', 'compe#complete()', { noremap = true, silent = true, expr = true })
 
