@@ -8,63 +8,6 @@ function fnd {
   nvim +"Find $*";
 }
 
-######## golang stuff
-
-# This goes up from current folder looking for a folder
-# that looks like a golang workspace root (has a 'src' subfolder, by now).
-# Then echoes its path and returns 0.
-# Returns -1 if does not find such a folder.
-function detect_go_workspace_root {
-  path="$PWD"
-  while [[ $path != / ]];
-  do
-    src="$path/src"
-    if [ -d "$src" ]; then
-      echo "$path" && return 0
-    fi
-    path="$(realpath -s "$path"/..)"  # ignoring symlinks
-  done
-  return -1
-}
-
-# This will setup the Go workspace to the detected root path.
-# It will complain if not detected.
-# Then it will cd into folder pointed by $GOPATH/.letsgo_srcpath
-function letsgo {
-  root=$(detect_go_workspace_root)
-  if [ $? -ne 0 ]; then
-    echo "Could not find Go Workspace Root for $PWD" && return -1
-  fi
-  export GOPATH=$root
-  export GOBIN=$root/bin
-  export PATH=$GOBIN:$PATH
-  export GOROOT=$(go env GOROOT)
-  srcpath="$root/.letsgo_srcpath"
-  [ -L "$srcpath" ] && cd "$(readlink $srcpath)"
-}
-
-# This will echo some funny symbol if we are inside current GOPATH.
-function ingopath {
-  [[ $PWD == "$(go env GOPATH)"* ]] && echo "(👀)"
-}
-
-function fix_facetime {
-  echo "facetimehd" | sudo tee -a /etc/modules
-}
-
-function cbenv() {
-	devID=$(curl -s https://dev.nonprod-project-avengers.com | sed -n 's|.*RELEASE:"\([^"]*\)".*|\1|p');
-	stageID=$(curl -s https://stage.nonprod-project-avengers.com | sed -n 's|.*RELEASE:"\([^"]*\)".*|\1|p');
-	prodID=$(curl -s https://cloud.couchbase.com | sed -n 's|.*RELEASE:"\([^"]*\)".*|\1|p');
-	gitName=$(git config --global user.name);
-	echo "SETTING CUTLING FOR $devID"
-	git log --pretty=format:'%s [%an] <%h>' |\
-		awk -v d="<$devID" '$0 ~ d && !x {print "\nDEV CUTLINE\n"; x=1} 1' |\
-		awk -v s="<$stageID" '$0 ~ s && !x {print "\nSTAGE CUTLINE\n"; x=1} 1' |\
-		awk -v p="<$prodID" '$0 ~ p && !x {print "\nPROD CUTLINE\n"; x=1} 1' |\
-		nvim -c 'set filetype=log' +/$gitName
-}
-
 function ch() {
   # get a list of available dirs to cd into
   # gwt ls | awk '{split($1,str,"/Users/nicwestvold/go/src/github.com/couchbasecloud/couchbase-cloud"); print str[2]}' | cut -d'/' -f2
