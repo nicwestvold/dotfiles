@@ -1,7 +1,7 @@
 local Plug = vim.fn['plug#']
 
--- vim.call('plug#begin', '~/.config/nvim/plugged')
-vim.call('plug#begin', '~/.vim/plugged')
+-- vim.call('plug#begin', '~/.vim/plugged')
+vim.call('plug#begin', '~/.config/nvim/plugged')
 
 -- """ functionality
 Plug 'nvim-tree/nvim-web-devicons' -- " optional, for file icons
