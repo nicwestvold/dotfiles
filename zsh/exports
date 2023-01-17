@@ -40,7 +40,7 @@ export HOMEBREW_NO_ANALYTICS=1
 export BAT_THEME="Dracula"
 
 # ponyup
-export PATH=/Users/nicwestvold/.local/share/ponyup/bin:$PATH
+export PATH=$HOME/.local/share/ponyup/bin:$PATH
 
 # nim
-export PATH=/Users/nicwestvold/.nimble/bin:$PATH
+export PATH=$HOME/.nimble/bin:$PATH

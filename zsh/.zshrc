@@ -56,6 +56,9 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# remove the alias for `gwt` so that the CLI tool gwt can be used
+unalias gwt
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -96,9 +99,11 @@ export EDITOR='nvim'
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-. $HOME/.asdf/asdf.sh
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+# . $HOME/.asdf/asdf.sh
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
+fpath=(${HOME}/.config/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit
 compinit
@@ -153,7 +158,7 @@ if [ -f '/home/nwestvold/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/n
 # Set Spaceship ZSH as a prompt
 # npm install -g spaceship-prompt
 autoload -U promptinit; promptinit
-prompt spaceship
+# prompt spaceship
 
 eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
+# eval "$(zoxide init zsh)"
