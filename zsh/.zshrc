@@ -57,7 +57,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # remove the alias for `gwt` (if it exists) so that the CLI tool gwt can be used
-if type "gwt" > /dev/null; then
+if alias gwt >/dev/null 2>&1; then 
   unalias gwt
 fi
 
