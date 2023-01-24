@@ -12,7 +12,7 @@ require'lspconfig'.gopls.setup{}
 -- require'lspconfig'.elmls.setup{}
 -- require'lspconfig'.dockerls.setup{}
 
-require('lspsaga').init_lsp_saga()
+require('lspsaga').setup({})
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
