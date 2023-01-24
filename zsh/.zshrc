@@ -56,8 +56,10 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# remove the alias for `gwt` so that the CLI tool gwt can be used
-unalias gwt
+# remove the alias for `gwt` (if it exists) so that the CLI tool gwt can be used
+if type "gwt" > /dev/null; then
+  unalias gwt
+fi
 
 # User configuration
 
@@ -99,7 +101,12 @@ export EDITOR='nvim'
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+if [ -f "$HOME/.asdf/asdf.sh" ]; then
+  . $HOME/.asdf/asdf.sh
+else
+  . /opt/homebrew/opt/asdf/libexec/asdf.sh
+fi
+
 # . $HOME/.asdf/asdf.sh
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
