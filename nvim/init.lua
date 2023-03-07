@@ -100,7 +100,13 @@ vim.cmd([[
     " run prettier on save
     let g:prettier#autoformat = 0
     autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.svelte PrettierAsync
+    " autocmd BufWritePre *.mjs,*.css,*.less,*.scss,*.graphql,*.md,*.vue,*.yaml,*.html,*.svelte PrettierAsync
 ]])
+
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     pattern = { "*.{js,jsx,ts,tsx,json}" },
+--     command = [[ !rome format --write % ]],
+-- })
 
 -- NvimTree
 -- disable netrw at the very start of your init.lua (strongly advised)

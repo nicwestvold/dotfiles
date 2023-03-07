@@ -55,7 +55,7 @@ vim.cmd("Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}")
 
 Plug 'jremmen/vim-ripgrep'
 Plug 'mattn/emmet-vim'
-vim.cmd("Plug 'prettier/vim-prettier', { 'do': 'npm install', 'branch': 'release/1.x' }")
+vim.cmd("Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }")
 vim.cmd("Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }")
 
 Plug 'machakann/vim-highlightedyank'
