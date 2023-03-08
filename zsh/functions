@@ -8,9 +8,9 @@ function fnd {
   nvim +"Find $*";
 }
 
+## to be used in conjunction with `gwt` and a bare repository
+##    - needs to be updated to support any bare repository directory
 function ch() {
   # get a list of available dirs to cd into
-  # gwt ls | awk '{split($1,str,"/Users/nicwestvold/go/src/github.com/couchbasecloud/couchbase-cloud"); print str[2]}' | cut -d'/' -f2
-  # gwt ls | awk '{print $1}' | cut -d'/' -f9
   cd "$HOME/go/src/github.com/couchbasecloud/couchbase-cloud/$1"
 }
