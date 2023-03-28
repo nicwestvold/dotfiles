@@ -12,6 +12,10 @@ require'lspconfig'.gopls.setup{}
 -- require'lspconfig'.elmls.setup{}
 -- require'lspconfig'.dockerls.setup{}
 
+require'lspconfig'.elixirls.setup{
+  cmd = { "/Users/nicwestvold/.config/elixir-ls/release/language_server.sh" };
+}
+
 require('lspsaga').setup({})
 
 require'nvim-treesitter.configs'.setup {
