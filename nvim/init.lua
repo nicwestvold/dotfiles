@@ -226,6 +226,9 @@ vim.cmd([[
       "" nmap <silent> ]g <Plug>(coc-diagnostic-next)
 ]])
 
+-- this turns on the different colored cursor line
+vim.wo.cursorline = true
+
 -- -- GoTo code navigation.
 -- vim.keymap.set('n', '<leader>gd', '<Plug>(coc-definition)', {})
 -- vim.keymap.set('n', '<leader>gt', '<Plug>(coc-type-definition)', {})
