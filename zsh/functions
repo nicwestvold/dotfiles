@@ -11,6 +11,9 @@ function fnd {
 ## to be used in conjunction with `gwt` and a bare repository
 ##    - needs to be updated to support any bare repository directory
 function ch() {
-  # get a list of available dirs to cd into
-  cd "$HOME/go/src/github.com/couchbasecloud/couchbase-cloud/$1"
+  if [[ -z "${REPO}" ]]; then
+    ECHO "$REPO ENV variable is not set. Unable to change worktrees."
+  else
+    cd "$REPO/$1"
+  fi
 }
