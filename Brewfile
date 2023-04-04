@@ -29,8 +29,13 @@ brew "starship"
 brew "tmux"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
+
+# casks
 cask "alacritty"
 cask "font-fira-code-nerd-font"
 cask "font-iosevka-nerd-font"
 cask "insomnia"
 cask "ngrok"
+
+# this was a requirement for working with some gem that was used
+brew "shared-mime-info"
