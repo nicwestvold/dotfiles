@@ -156,7 +156,9 @@ if [ -f '/home/nwestvold/google-cloud-sdk/path.zsh.inc' ]; then . '/home/nwestvo
 if [ -f '/home/nwestvold/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/nwestvold/google-cloud-sdk/completion.zsh.inc'; fi
 
 # direnv
-# eval "$(direnv hook zsh)"
+if (( $+commands[direnv] )); then
+  eval "$(direnv hook zsh)"
+fi
 
 # autoenv
 # source $(brew --prefix autoenv)/activate.sh

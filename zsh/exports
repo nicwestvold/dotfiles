@@ -44,3 +44,6 @@ export PATH=$HOME/.local/share/ponyup/bin:$PATH
 
 # nim
 export PATH=$HOME/.nimble/bin:$PATH
+
+# asdf-golang
+export ASDF_GOLANG_MOD_VERSION_ENABLED=true

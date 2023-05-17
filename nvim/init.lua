@@ -6,10 +6,88 @@ require('lspconfig').tsserver.setup({
     capabilities = capabilities,
   })
 require'lspconfig'.svelte.setup{}
-require'lspconfig'.tailwindcss.setup{}
+
+require'lspconfig'.tailwindcss.setup({
+ capabilities = capabilities,
+ on_attach = on_attach,
+ settings = {
+  tailwindCSS = {
+   classAttributes = { "class", "className", "classList", "ngClass" },
+   experimental = {
+    classRegex = { '\\bclass\\s+"([^"]*)"', '\\btw\\(+"([^"]*)"' },
+    -- classRegex = {"\\b(className\\=\\%tw\\(\)+\"([^\"]*)\""}
+   },
+   lint = {
+    cssConflict = "warning",
+    invalidApply = "error",
+    invalidConfigPath = "error",
+    invalidScreen = "error",
+    invalidTailwindDirective = "error",
+    invalidVariant = "error",
+    recommendedVariantOrder = "warning",
+   },
+   validate = true,
+  },
+ },
+ filetypes = {
+  "aspnetcorerazor",
+  "astro",
+  "astro-markdown",
+  "blade",
+  "django-html",
+  "edge",
+  "eelixir",
+  "ejs",
+  "erb",
+  "eruby",
+  "gohtml",
+  "haml",
+  "handlebars",
+  "hbs",
+  "html",
+  "html-eex",
+  "heex",
+  "jade",
+  "leaf",
+  "liquid",
+  "markdown",
+  "mdx",
+  "mustache",
+  "njk",
+  "nunjucks",
+  "php",
+  "razor",
+  "slim",
+  "twig",
+  "css",
+  "less",
+  "postcss",
+  "sass",
+  "scss",
+  "stylus",
+  "sugarss",
+  "javascript",
+  "javascriptreact",
+  "reason",
+  "rescript",
+  "typescript",
+  "typescriptreact",
+  "vue",
+  "svelte",
+  "elm",
+ },
+ init_options = {
+  userLanguages = {
+   eelixir = "html-eex",
+   elm = "html",
+   eruby = "erb",
+  },
+ },
+})
+
 -- require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.gopls.setup{}
--- require'lspconfig'.elmls.setup{}
+require'lspconfig'.elmls.setup{}
 -- require'lspconfig'.dockerls.setup{}
 
 require'lspconfig'.elixirls.setup{
@@ -20,7 +98,7 @@ require('lspsaga').setup({})
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "css", "elixir", "eex", "go", "heex", "html", "javascript", "json", "scss", "svelte", "tsx", "typescript", "yaml" },
+  ensure_installed = { "css", "elm", "elixir", "eex", "go", "heex", "html", "javascript", "json", "scss", "svelte", "tsx", "typescript", "yaml" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -99,7 +177,8 @@ cmp.setup({
 vim.g.mapleader = " "
 
 vim.cmd([[
-    set rtp+=/usr/local/opt/fzf
+    " set rtp+=/usr/local/opt/fzf
+    set rtp+=/opt/homebrew/opt/fzf
 
     " run prettier on save
     let g:prettier#autoformat = 0
