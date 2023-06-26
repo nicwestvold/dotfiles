@@ -4,3 +4,4 @@
 alias copy="xclip -r -selection clipboard"
 # alias mux=tmuxinator
 # alias vim=nvim
+alias lg="lazygit"

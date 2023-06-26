@@ -98,7 +98,7 @@ require('lspsaga').setup({})
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "css", "elm", "elixir", "eex", "go", "heex", "html", "javascript", "json", "scss", "svelte", "tsx", "typescript", "yaml" },
+  ensure_installed = { "css", "elm", "elixir", "erlang", "eex", "go", "heex", "html", "javascript", "json", "ruby", "scss", "surface", "svelte", "tsx", "typescript", "yaml" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
