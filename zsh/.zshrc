@@ -121,6 +121,9 @@ compinit
 # . $(brew --prefix asdf)/asdf.sh
 # . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
 
+# stripe completions
+fpath=(~/.stripe $fpath)
+autoload -Uz compinit && compinit -i
 
 # . $HOME/.asdf/installs/ocaml/$(asdf current ocaml | awk '{print $1}')/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
