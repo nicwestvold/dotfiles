@@ -52,6 +52,9 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 vim.cmd("Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}")
+-- eslint
+-- Plug 'jose-elias-alvarez/null-ls.nvim'
+-- Plug 'MunifTanjim/eslint.nvim'
 
 Plug 'jremmen/vim-ripgrep'
 Plug 'mattn/emmet-vim'
