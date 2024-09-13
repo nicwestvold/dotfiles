@@ -9,6 +9,8 @@ autoload -Uz compinit && compinit
 # Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+export PATH="/opt/prince/bin:$PATH"
+
 # Setup asdf
 # https://hackercodex.com/guide/python-development-environment-on-mac-osx/
 . $(brew --prefix asdf)/libexec/asdf.sh
