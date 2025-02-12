@@ -17,3 +17,7 @@ function ch() {
     cd "$REPO/$1"
   fi
 }
+
+function psource() {
+  source $(poetry env info --path)/bin/activate
+}

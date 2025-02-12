@@ -1,11 +1,14 @@
 #!/bin/bash
 
+export ASDF_DATA_DIR="/Users/nicwestvold/.asdf"
+export PATH=$ASDF_DATA_DIR/shims:$PATH
+
 # add the Postgres.app to the PATH
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
 # golang
 export GOPATH=$HOME/go
-export GOROOT="$(asdf where golang $(asdf current golang | awk '{print $2}'))/go"
+export GOROOT="$(asdf where golang $(asdf current golang | tail -n +2 | awk '{print $2}'))/go"
 export PATH=$PATH:$GOPATH/bin
 export PATH=$GOROOT/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
@@ -47,3 +50,8 @@ export PATH=$HOME/.nimble/bin:$PATH
 
 # asdf-golang
 export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+
+# tauri android dev
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"

@@ -101,20 +101,20 @@ export EDITOR='nvim'
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-if [ -f "$HOME/.asdf/asdf.sh" ]; then
-  . $HOME/.asdf/asdf.sh
-else
-  . /opt/homebrew/opt/asdf/libexec/asdf.sh
-fi
+# if [ -f "$HOME/.asdf/asdf.sh" ]; then
+#   . $HOME/.asdf/asdf.sh
+# else
+#   . /opt/homebrew/opt/asdf/libexec/asdf.sh
+# fi
 
-# . $HOME/.asdf/asdf.sh
-# append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
-fpath=(${HOME}/.config/completions $fpath)
-# initialise completions with ZSH's compinit
-autoload -Uz compinit
-compinit
-# . $HOME/.asdf/completions/asdf.bash
+# # . $HOME/.asdf/asdf.sh
+# # append completions to fpath
+# fpath=(${ASDF_DIR}/completions $fpath)
+# fpath=(${HOME}/.config/completions $fpath)
+# # initialise completions with ZSH's compinit
+# autoload -Uz compinit
+# compinit
+# # . $HOME/.asdf/completions/asdf.bash
 
 # echo -e "\n. $(brew --prefix asdf)/asdf.sh" >> ~/.bash_profile
 # echo -e "\n. $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash" >> ~/.bash_profile
