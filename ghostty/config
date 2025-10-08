@@ -15,5 +15,6 @@ font-family =
 
 font-size = 12
 
-theme = Doom One
 # theme = Dracula+
+# theme = Doom One
+theme = Snazzy
