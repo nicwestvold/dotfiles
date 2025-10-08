@@ -152,12 +152,6 @@ fi
 # autoload -U promptinit; promptinit
 # prompt pure
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/nwestvold/google-cloud-sdk/path.zsh.inc' ]; then . '/home/nwestvold/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/nwestvold/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/nwestvold/google-cloud-sdk/completion.zsh.inc'; fi
-
 # direnv
 if (( $+commands[direnv] )); then
   eval "$(direnv hook zsh)"
@@ -187,3 +181,24 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/nicwestvold/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+# Added by Windsurf
+export PATH="/Users/nicwestvold/.codeium/windsurf/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/nicwestvold/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/nicwestvold/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/nicwestvold/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/nicwestvold/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# bun completions
+[ -s "/Users/nicwestvold/.bun/_bun" ] && source "/Users/nicwestvold/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
