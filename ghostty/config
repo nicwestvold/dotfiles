@@ -10,8 +10,10 @@
 # keybind = ctrl+d=new_split:right
 
 # Empty values reset the configuration to the default value
-font-family =
+# font-family =
 # font-family = FiraCode Nerd Font Mono
+font-family = Geist Mono
+font-family = JetBrainsMono Nerd Font Mono
 
 font-size = 12
 
