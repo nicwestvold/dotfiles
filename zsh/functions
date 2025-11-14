@@ -21,3 +21,75 @@ function ch() {
 function psource() {
   source $(poetry env info --path)/bin/activate
 }
+
+
+# Usage:
+#   bigfiles [min_lines] [excluded_exts] [dir]
+# Examples:
+#   bigfiles                 # show help
+#   bigfiles 2000 'csv,ttf,wav'
+#   bigfiles 500 '' src
+
+function bigfiles() {
+  # if no args, show help
+  if [[ $# -eq 0 ]]; then
+    cat <<'EOF'
+Usage: bigfiles [min_lines] [excluded_exts] [dir]
+
+Arguments:
+  min_lines       Minimum number of lines to report (default: 1000)
+  excluded_exts   Comma-separated list of extensions to exclude (default: csv,wav,ttf,gif,m4a,pdf,json,jsonl,patch,png,yaml)
+  dir             Directory to search (default: .)
+
+Examples:
+  bigfiles 2000 'csv,ttf,wav'   # find files >2000 lines, excluding csv/ttf/wav
+  bigfiles 500 '' src           # find files >500 lines in ./src, no excludes
+
+Note: Some directories (node_modules, .git, dist, build) are ignored by default.
+EOF
+    return 0
+  fi
+
+  local min="${1:-1000}"
+  local exts="${2:-csv,wav,ttf,gif,m4a,pdf,json,jsonl,patch,png,yaml}"
+  local dir="${3:-.}"
+
+  local -a fd_args
+  fd_args=(--type f)
+
+  # ignore common heavy directories by default
+  local ignored_dirs=("node_modules" ".git" "dist" "build" ".venv" ".next")
+  for d in "${ignored_dirs[@]}"; do
+    fd_args+=(-E "$d")
+  done
+
+  # exclude given extensions
+  if [[ -n "$exts" ]]; then
+    local IFS=','; local -a arr=(${=exts})
+    for ext in "${arr[@]}"; do
+      [[ -n "$ext" ]] && fd_args+=(-E "*.${ext}")
+    done
+  fi
+
+  # run the search and capture output
+  local output
+  output="$(
+    fd "${fd_args[@]}" --print0 -- "$dir" \
+    | xargs -0 -I{} sh -c '
+        MIN="$1"; f="$2"
+        if [ -r "$f" ] && [ -f "$f" ]; then
+          c=$(wc -l < "$f" 2>/dev/null || echo 0)
+          if [ "$c" -gt "$MIN" ]; then
+            printf "%10d  %s\n" "$c" "$f"
+          fi
+        fi
+      ' _ "$min" "{}" \
+    | sort -nr
+  )"
+
+  if [[ -z "$output" ]]; then
+    echo "No files found with more than $min lines in '$dir' (ignoring: ${ignored_dirs[*]})."
+  else
+    echo "$output"
+  fi
+}
