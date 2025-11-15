@@ -21,9 +21,14 @@ znap eval starship 'starship init zsh'
 
 # Emacs keybindings
 bindkey -e
-# Use the up and down keys to navigate the history
-bindkey "\e[A" history-beginning-search-backward
-bindkey "\e[B" history-beginning-search-forward
+
+# Move cursor to end of line after history search
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^[[A" history-beginning-search-backward-end  # Up arrow
+bindkey "^[[B" history-beginning-search-forward-end    # Down arrow
+
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
