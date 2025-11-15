@@ -1,204 +1,96 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="dracula"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git asdf)
-
-source $ZSH/oh-my-zsh.sh
-
-# remove the alias for `gwt` (if it exists) so that the CLI tool gwt can be used
-if alias gwt >/dev/null 2>&1; then 
-  unalias gwt
+# --- Homebrew ---
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-# User configuration
+# Download Znap, if it's not there yet.
+[[ -r ~/Development/znap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git ~/Development/znap
+source ~/Development/znap/znap.zsh  # Start Znap
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# --- asdf ---
+. "$(brew --prefix asdf)/libexec/asdf.sh"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# append completions to fpath
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-export EDITOR='nvim'
+# --- Starship prompt ---
+znap eval starship 'starship init zsh'
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# Emacs keybindings
+bindkey -e
+# Use the up and down keys to navigate the history
+bindkey "\e[A" history-beginning-search-backward
+bindkey "\e[B" history-beginning-search-forward
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+# Enable persistent history
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+setopt sharehistory
+# prevents commands prefixed with a space from being saved into history file
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
 
-# load completions for tmuxinator (and the 'mux' alias)
-# source ~/.bin/tmuxinator.zsh
+# Configure the push directory stack (most people don't need this)
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushd_silent
 
-# export PATH="$HOME/bin:$HOME/.rbenv/shims:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-# eval "$(rbenv init -)"
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# allows case-insensitive matching for completions
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# shows colors for completions
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-# if [ -f "$HOME/.asdf/asdf.sh" ]; then
-#   . $HOME/.asdf/asdf.sh
-# else
-#   . /opt/homebrew/opt/asdf/libexec/asdf.sh
-# fi
+# --- direnv
+eval "$(direnv hook zsh)"
 
-# # . $HOME/.asdf/asdf.sh
-# # append completions to fpath
-# fpath=(${ASDF_DIR}/completions $fpath)
-# fpath=(${HOME}/.config/completions $fpath)
-# # initialise completions with ZSH's compinit
-# autoload -Uz compinit
-# compinit
-# # . $HOME/.asdf/completions/asdf.bash
+# --- golang
+. ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
 
-# echo -e "\n. $(brew --prefix asdf)/asdf.sh" >> ~/.bash_profile
-# echo -e "\n. $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash" >> ~/.bash_profile
-# . $(brew --prefix asdf)/asdf.sh
-# . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+# --- add cargo (rust) to path
+export PATH="$HOME/.cargo/bin:$PATH"
+# --- set bat theme via BAT_THEME env var
+export BAT_THEME="Sublime Snazzy"
 
-# stripe completions
-fpath=(~/.stripe $fpath)
-autoload -Uz compinit && compinit -i
+# cd aliases
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
 
-# . $HOME/.asdf/installs/ocaml/$(asdf current ocaml | awk '{print $1}')/opam-init/init.zsh > /dev/null 2> /dev/null || true
+# List directory contents
+alias ls='ls -G'
+alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
 
-# z
-# . /usr/local/etc/profile.d/z.sh
+# Defer loading of common plugins until after the prompt
+znap prompt
+() {
+    local -a plugins=(
+        git  # <-- Make sure 'git' is in this list
+    )
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    znap source ohmyzsh/ohmyzsh lib/git.zsh
+    # Source the specified plugins
+    znap source ohmyzsh/ohmyzsh plugins/$^plugins
+}
 
-# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix zsh-autosuggestions)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# --- Plugins (keep syntax-highlighting last) ---
+znap source zsh-users/zsh-autosuggestions
+znap source zsh-users/zsh-completions
+znap source zsh-users/zsh-syntax-highlighting
 
-# extensions
-# for file in $(dirname "$(readlink "$0")")/.zsh/.{exports,aliases,functions}; do
-for file in ~/.dotfiles/zsh/{exports,aliases,functions}; do
-  source "$file";
-done;
-
-# custom extensions
-custom=~/.dotfiles/zsh/custom;
-if [[ -f "$custom" ]]; then
-  source "$custom"
-fi
-
-# autoload -U promptinit; promptinit
-# prompt pure
-
-# direnv
-if (( $+commands[direnv] )); then
-  eval "$(direnv hook zsh)"
-fi
-
-if command -v ngrok &>/dev/null; then
-  eval "$(ngrok completion)"
-fi
-
-# autoenv
-# source $(brew --prefix autoenv)/activate.sh
-[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
-
-# Set Spaceship ZSH as a prompt
-# npm install -g spaceship-prompt
-autoload -U promptinit; promptinit
-# prompt spaceship
-
-eval "$(starship init zsh)"
-# eval "$(zoxide init zsh)"
-source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
-
-# pnpm
-export PNPM_HOME="/Users/nicwestvold/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/nicwestvold/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
-
-# Added by Windsurf
-export PATH="/Users/nicwestvold/.codeium/windsurf/bin:$PATH"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/nicwestvold/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/nicwestvold/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/nicwestvold/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/nicwestvold/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-# bun completions
-[ -s "/Users/nicwestvold/.bun/_bun" ] && source "/Users/nicwestvold/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# Initialize completion
+autoload -Uz compinit && compinit
