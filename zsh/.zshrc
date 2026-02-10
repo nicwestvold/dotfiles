@@ -80,6 +80,10 @@ alias l='ls -lah'
 alias ll='ls -lh'
 alias la='ls -lAh'
 
+take() {
+  mkdir -p "$1" && cd "$1"
+}
+
 # Defer loading of common plugins until after the prompt
 znap prompt
 () {
@@ -91,6 +95,13 @@ znap prompt
     # Source the specified plugins
     znap source ohmyzsh/ohmyzsh plugins/$^plugins
 }
+
+# --- remove the `gwt*` aliases that ohmyzsh added above
+unalias 'gwt'
+unalias 'gwta'
+unalias 'gwtls'
+unalias 'gwtmv'
+unalias 'gwtrm'
 
 # --- Plugins (keep syntax-highlighting last) ---
 znap source zsh-users/zsh-autosuggestions
