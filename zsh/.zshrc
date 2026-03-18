@@ -9,12 +9,21 @@ fi
         https://github.com/marlonrichert/zsh-snap.git ~/Development/znap
 source ~/Development/znap/znap.zsh  # Start Znap
 
-# --- asdf ---
-. "$(brew --prefix asdf)/libexec/asdf.sh"
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-# append completions to fpath
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+# mise
+eval "$(mise activate zsh)"
 
+eval "$(gwt shell-init)"
+
+# --- Bare repo detection for Starship ---
+function _check_bare_repo() {
+   if [[ "$(git config --get core.bare 2>/dev/null)" == "true" ]]; then
+     export STARSHIP_CONFIG="$HOME/.config/starship-bare.toml"
+   else
+     unset STARSHIP_CONFIG
+   fi
+}
+chpwd_functions+=(_check_bare_repo)
+_check_bare_repo
 
 # --- Starship prompt ---
 znap eval starship 'starship init zsh'
@@ -59,13 +68,21 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # --- direnv
 eval "$(direnv hook zsh)"
 
-# --- golang
-. ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
+# # --- golang (with asdf)
+# . ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
 
 # --- add cargo (rust) to path
 export PATH="$HOME/.cargo/bin:$PATH"
 # --- set bat theme via BAT_THEME env var
 export BAT_THEME="Sublime Snazzy"
+
+# --- add ~/.local/bin to path for user-installed tools
+export PATH="$HOME/.local/bin:$PATH"
+
+# extensions - adding any new filenames inside of the brackets
+for file in ~/.dotfiles/zsh/{exports,aliases,functions,custom}; do
+  [[ -f "$file" ]] && source "$file"
+done;
 
 # cd aliases
 alias -g ...='../..'
@@ -110,3 +127,8 @@ znap source zsh-users/zsh-syntax-highlighting
 
 # Initialize completion
 autoload -Uz compinit && compinit
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/nicwestvold/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
