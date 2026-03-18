@@ -80,7 +80,7 @@ export BAT_THEME="Sublime Snazzy"
 export PATH="$HOME/.local/bin:$PATH"
 
 # extensions - adding any new filenames inside of the brackets
-for file in ~/.dotfiles/zsh/{exports,aliases,functions,custom}; do
+for file in ~/.config/zsh/{exports,aliases,functions,custom}; do
   [[ -f "$file" ]] && source "$file"
 done;
 
