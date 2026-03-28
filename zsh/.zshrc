@@ -52,7 +52,7 @@ ZSH_THEME="dracula"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git asdf)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -172,7 +172,10 @@ autoload -U promptinit; promptinit
 
 eval "$(starship init zsh)"
 # eval "$(zoxide init zsh)"
-source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+# source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+
+# mise
+eval "$(mise activate zsh)"
 
 # pnpm
 export PNPM_HOME="/Users/nicwestvold/Library/pnpm"
