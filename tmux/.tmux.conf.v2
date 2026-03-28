@@ -1,0 +1,61 @@
+# =============================================================================
+# Modern Minimal tmux Config
+# =============================================================================
+
+# -- Terminal & True Color ----------------------------------------------------
+set -g default-terminal "tmux-256color"
+set -ag terminal-overrides ",xterm-256color:RGB"
+set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'           # undercurl
+set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colors
+
+# -- Sensible Defaults --------------------------------------------------------
+set -sg escape-time 0
+set -g history-limit 50000
+set -g mouse on
+set -g base-index 1
+setw -g pane-base-index 1
+set -g renumber-windows on
+set -g set-clipboard on
+set -g status-position top
+set -g focus-events on
+setw -g mode-keys vi
+set -g status-keys vi
+set -g allow-rename off
+
+# -- Prefix -------------------------------------------------------------------
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
+
+# -- Catppuccin Theme ---------------------------------------------------------
+set -g @catppuccin_flavor "mocha"
+set -g @catppuccin_window_status_style "rounded"
+set -g @catppuccin_status_background "default"
+set -g @catppuccin_window_flags "icon"
+
+# -- Plugins ------------------------------------------------------------------
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'catppuccin/tmux#v2.1.3'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
+# -- Session Persistence ------------------------------------------------------
+set -g @resurrect-processes 'false'       # Layout only, don't restore programs
+set -g @continuum-restore 'on'            # Auto-restore on tmux start
+set -g @continuum-save-interval '15'      # Auto-save every 15 minutes
+
+# -- Load Catppuccin then configure status bar --------------------------------
+run ~/.tmux/plugins/tmux/catppuccin.tmux
+
+set -g status-right-length 100
+set -g status-left-length 100
+set -g status-left "#{E:@catppuccin_status_session}"
+set -g status-right "#{E:@catppuccin_status_directory}"
+
+# -- Keybindings (separate file for easy toggling) ----------------------------
+source-file ~/Development/nic/dotfiles/tmux/keybindings.conf
+
+# -- TPM Init (must be last) -------------------------------------------------
+run '~/.tmux/plugins/tpm/tpm'
