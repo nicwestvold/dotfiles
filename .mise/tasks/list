@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#MISE description="List all apps and their symlink status"
+set -euo pipefail
+
+source "$(dirname "$0")/lib/mappings.sh"
+
+current_app=""
+for entry in "${MAPPINGS[@]}"; do
+  IFS='|' read -r name src target <<< "$entry"
+
+  if [[ "$name" != "$current_app" ]]; then
+    current_app="$name"
+    echo "$name"
+  fi
+
+  if [[ -L "$target" && "$(readlink "$target")" == "$DOTFILES_DIR/$src" ]]; then
+    icon=$'\uf00c' # nf-fa-check
+  elif [[ -e "$target" ]]; then
+    icon=$'\uf00d' # nf-fa-xmark
+  else
+    icon=" "
+  fi
+
+  echo "  $icon $src -> $target"
+done
