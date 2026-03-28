@@ -20,8 +20,6 @@ font-size = 12
 # --- Theme Options ---
 # theme = Dracula+
 # theme = Doom One
-# theme = catppuccin-macchiato
-# theme = tokyonight
-# theme = kanagawa-wave
 theme = Snazzy
+
 keybind = shift+enter=text:\x1b\r

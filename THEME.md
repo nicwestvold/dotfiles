@@ -4,24 +4,24 @@ Four color themes are pre-configured across the stack, commented out and ready t
 
 ## Available Themes
 
-| Theme | Style |
-|---|---|
-| **Tokyo Night** | Cool blues/purples, city lights aesthetic |
-| **Catppuccin Macchiato** | Soothing pastels, rich dark variant |
-| **Kanagawa Wave** | Warm muted tones, Japanese art inspired |
-| **Doom One** | Vibrant, high-contrast (Atom One Dark lineage) |
+| Theme                    | Style                                          |
+| ------------------------ | ---------------------------------------------- |
+| **Tokyo Night**          | Cool blues/purples, city lights aesthetic      |
+| **Catppuccin Macchiato** | Soothing pastels, rich dark variant            |
+| **Kanagawa Wave**        | Warm muted tones, Japanese art inspired        |
+| **Doom One**             | Vibrant, high-contrast (Atom One Dark lineage) |
 
 ## Current Active Theme
 
-| Tool | Theme |
-|---|---|
-| Ghostty | Snazzy |
-| Neovim | Tokyo Night Storm |
-| tmux | Custom (Snazzy-inspired) |
-| bat | Sublime Snazzy |
-| fzf | Default |
-| Starship | Default |
-| delta | Not configured |
+| Tool     | Theme                    |
+| -------- | ------------------------ |
+| Ghostty  | Snazzy                   |
+| Neovim   | Tokyo Night Storm        |
+| tmux     | Custom (Snazzy-inspired) |
+| bat      | Sublime Snazzy           |
+| fzf      | Default                  |
+| Starship | Default                  |
+| delta    | Not configured           |
 
 ## How to Switch
 
@@ -74,19 +74,38 @@ Uncomment the `palette = "..."` line AND the matching `[palettes.xxx]` block. St
 
 Uncomment the matching `[delta]` block under "delta Theme Options". Requires the corresponding bat `.tmTheme` to be installed first (Catppuccin also needs its gitconfig include).
 
+```
+# --- delta Theme Options (uncomment one) ---
+# Catppuccin Macchiato: requires catppuccin/bat + catppuccin/delta installed
+# [include]
+#   path = ~/.config/delta/catppuccin.gitconfig
+# [delta]
+#   features = catppuccin-macchiato
+
+# Tokyo Night: requires tokyonight .tmTheme installed to bat themes
+# [delta]
+#   syntax-theme = tokyonight_night
+#
+# Kanagawa: requires kanagawa.tmTheme installed to bat themes
+# [delta]
+#   syntax-theme = kanagawa
+#
+# Doom One: no official delta port available
+```
+
 ## Ecosystem Coverage
 
 Not every theme has an official port for every tool.
 
-| Tool | Tokyo Night | Catppuccin | Kanagawa | Doom One |
-|---|---|---|---|---|
-| Ghostty | Official | Built-in | Official | Built-in |
-| Neovim | Official | Official | Official | Community |
-| tmux | Custom | Custom | Custom | Custom |
-| bat | Needs .tmTheme | Official | Official (wave) | No port |
-| fzf | Official | Official | DIY | No port |
-| Starship | Manual palette | Official | Manual palette | No port |
-| delta | Official | Official | Official (wave) | No port |
+| Tool     | Tokyo Night    | Catppuccin | Kanagawa        | Doom One  |
+| -------- | -------------- | ---------- | --------------- | --------- |
+| Ghostty  | Official       | Built-in   | Official        | Built-in  |
+| Neovim   | Official       | Official   | Official        | Community |
+| tmux     | Custom         | Custom     | Custom          | Custom    |
+| bat      | Needs .tmTheme | Official   | Official (wave) | No port   |
+| fzf      | Official       | Official   | DIY             | No port   |
+| Starship | Manual palette | Official   | Manual palette  | No port   |
+| delta    | Official       | Official   | Official (wave) | No port   |
 
 "Custom" = hand-rolled theme file in `tmux/themes/` matching the palette.
 "No port" = commented placeholder noting the gap.
