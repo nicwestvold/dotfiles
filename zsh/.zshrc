@@ -1,20 +1,8 @@
-# --- Homebrew ---
-if [[ -x /opt/homebrew/bin/brew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
 # Download Znap, if it's not there yet.
 [[ -r ~/Development/znap/znap.zsh ]] ||
     git clone --depth 1 -- \
         https://github.com/marlonrichert/zsh-snap.git ~/Development/znap
 source ~/Development/znap/znap.zsh  # Start Znap
-
-# --- asdf ---
-. "$(brew --prefix asdf)/libexec/asdf.sh"
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-# append completions to fpath
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
-
 
 # --- Starship prompt ---
 znap eval starship 'starship init zsh'
@@ -51,21 +39,34 @@ setopt pushd_silent
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-# allows case-insensitive matching for completions
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-# shows colors for completions
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+# --- fzf Theme Options (uncomment one) ---
+# Catppuccin Macchiato
+# export FZF_DEFAULT_OPTS=" \
+#   --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+#   --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+#   --color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
+#   --color=selected-bg:#494d64"
+# Tokyo Night
+# export FZF_DEFAULT_OPTS=" \
+#   --color=bg+:#283457,bg:#16161e,spinner:#bb9af7,hl:#7aa2f7 \
+#   --color=fg:#c0caf5,header:#7aa2f7,info:#7dcfff,pointer:#bb9af7 \
+#   --color=marker:#9ece6a,fg+:#c0caf5,prompt:#7dcfff,hl+:#7aa2f7 \
+#   --color=selected-bg:#364a82"
+# Kanagawa Wave
+# export FZF_DEFAULT_OPTS=" \
+#   --color=bg+:#223249,bg:#1f1f28,spinner:#c8748f,hl:#7e9cd8 \
+#   --color=fg:#dcd7ba,header:#7e9cd8,info:#6a9589,pointer:#c8748f \
+#   --color=marker:#98bb6c,fg+:#dcd7ba,prompt:#6a9589,hl+:#7e9cd8 \
+#   --color=selected-bg:#2d4f67"
+# Doom One: no official fzf port available
 
 # --- direnv
 eval "$(direnv hook zsh)"
 
-# --- golang
-. ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
-
-# --- add cargo (rust) to path
-export PATH="$HOME/.cargo/bin:$PATH"
-# --- set bat theme via BAT_THEME env var
-export BAT_THEME="Sublime Snazzy"
+# --- OrbStack
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 # cd aliases
 alias -g ...='../..'
@@ -108,5 +109,13 @@ znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-completions
 znap source zsh-users/zsh-syntax-highlighting
 
+# allows case-insensitive matching for completions
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# shows colors for completions
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
 # Initialize completion
 autoload -Uz compinit && compinit
+
+# --- mise
+eval "$(mise activate zsh)"
