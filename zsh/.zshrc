@@ -39,6 +39,27 @@ setopt pushd_silent
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
+# --- fzf Theme Options (uncomment one) ---
+# Catppuccin Macchiato
+# export FZF_DEFAULT_OPTS=" \
+#   --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+#   --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+#   --color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
+#   --color=selected-bg:#494d64"
+# Tokyo Night
+# export FZF_DEFAULT_OPTS=" \
+#   --color=bg+:#283457,bg:#16161e,spinner:#bb9af7,hl:#7aa2f7 \
+#   --color=fg:#c0caf5,header:#7aa2f7,info:#7dcfff,pointer:#bb9af7 \
+#   --color=marker:#9ece6a,fg+:#c0caf5,prompt:#7dcfff,hl+:#7aa2f7 \
+#   --color=selected-bg:#364a82"
+# Kanagawa Wave
+# export FZF_DEFAULT_OPTS=" \
+#   --color=bg+:#223249,bg:#1f1f28,spinner:#c8748f,hl:#7e9cd8 \
+#   --color=fg:#dcd7ba,header:#7e9cd8,info:#6a9589,pointer:#c8748f \
+#   --color=marker:#98bb6c,fg+:#dcd7ba,prompt:#6a9589,hl+:#7e9cd8 \
+#   --color=selected-bg:#2d4f67"
+# Doom One: no official fzf port available
+
 # --- direnv
 eval "$(direnv hook zsh)"
 

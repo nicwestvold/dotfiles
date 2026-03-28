@@ -10,6 +10,11 @@ fi
 
 export PATH="/opt/prince/bin:$PATH"
 # --- set bat theme via BAT_THEME env var
+# --- Theme Options ---
+# export BAT_THEME="Catppuccin Macchiato"   # requires: https://github.com/catppuccin/bat
+# export BAT_THEME="tokyonight_night"       # no official port; use Sublime tmTheme from tokyonight extras
+# export BAT_THEME="kanagawa"               # requires: kanagawa.tmTheme from kanagawa.nvim extras/
+# Doom One: no official bat port available
 export BAT_THEME="Sublime Snazzy"
 # -- set neovim as default editor
 export EDITOR=nvim
