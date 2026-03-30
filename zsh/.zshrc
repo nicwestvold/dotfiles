@@ -128,6 +128,8 @@ autoload -Uz compinit && compinit
 # --- mise
 eval "$(mise activate zsh)"
 
+export PATH="$HOME/.local/bin:$PATH";
+
 if command -v gwt &>/dev/null; then
   eval "$(gwt shell-init)"
 else

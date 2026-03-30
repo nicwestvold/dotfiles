@@ -8,7 +8,5 @@ fi
 # this also adds cargo's bin directory to the PATH, so we don't need to do it separately
 . "$HOME/.cargo/env"
 
-export PATH="$HOME/.local/bin:$PATH";
-
 # -- set neovim as default editor
 export EDITOR=nvim
