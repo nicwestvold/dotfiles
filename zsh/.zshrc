@@ -68,6 +68,11 @@ eval "$(direnv hook zsh)"
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
+# extensions - adding any new filenames inside of the brackets
+for file in ~/.config/zsh/{exports,aliases,functions,custom}; do
+  [[ -f "$file" ]] && source "$file"
+done;
+
 # cd aliases
 alias -g ...='../..'
 alias -g ....='../../..'
@@ -114,8 +119,17 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 # shows colors for completions
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/nicwestvold/.docker/completions $fpath)
+
 # Initialize completion
 autoload -Uz compinit && compinit
 
 # --- mise
 eval "$(mise activate zsh)"
+
+if command -v gwt &>/dev/null; then
+  eval "$(gwt shell-init)"
+else
+  echo "gwt not installed - https://github.com/nicwestvold/gwt"
+fi

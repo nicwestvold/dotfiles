@@ -4,3 +4,6 @@ disabled = true
 
 [nodejs]
 disabled = true
+
+# [git_branch]
+# ignore_bare_repo = true
