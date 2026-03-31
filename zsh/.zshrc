@@ -135,3 +135,9 @@ if command -v gwt &>/dev/null; then
 else
   echo "gwt not installed - https://github.com/nicwestvold/gwt"
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/nicwestvold/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/nicwestvold/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/nicwestvold/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/nicwestvold/google-cloud-sdk/completion.zsh.inc'; fi
