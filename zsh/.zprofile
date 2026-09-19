@@ -10,3 +10,7 @@ fi
 
 # -- set neovim as default editor
 export EDITOR=nvim
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/nicwestvold/.local/bin:$PATH"

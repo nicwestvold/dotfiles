@@ -141,3 +141,7 @@ if [ -f '/Users/nicwestvold/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/nic
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/nicwestvold/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/nicwestvold/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/nicwestvold/.local/bin:$PATH"
